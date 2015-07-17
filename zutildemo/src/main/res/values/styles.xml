@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="AppBaseTheme" parent="android:Theme.Light"></style>
+
+    <style name="AppTheme" parent="AppBaseTheme"><!-- 在AndroidManifeest.xml的application或activity中使用android:theme="@style/AppTheme" -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- <item name="android:windowFullscreen">?android:windowNoTitle</item> --><!-- 引用某属性的值 -->
+    </style>
+    
+
+    <style name="textViewStyle1"><!-- 为样式定义一个全局唯一的名字，在layout的TextView中使用style="@style/textViewStyle1" -->
+        <item name="android:textSize">22sp</item><!-- name属性的值为使用了该样式的view控件的属性 -->
+        <item name="android:textColor">#FF0000</item>
+    </style>
+    <style name="textViewStyle1.childStyle"><!-- textViewStyle1.childStyle继承textViewStyle1 -->
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+</resources>

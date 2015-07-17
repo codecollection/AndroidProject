@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">AndroidHelp</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+
+    <string name="Activity">Activity</string>
+    <string name="Service">Service</string>
+    <string name="UI">UI</string>
+    <string name="DB">DB</string>
+    <string name="Sensor">Sensor</string>
+    <string name="Handler">Handler</string>
+    <string name="Shortcut">Shortcut</string>
+    <string name="AsyncTask">AsyncTask</string>
+    
+</resources>

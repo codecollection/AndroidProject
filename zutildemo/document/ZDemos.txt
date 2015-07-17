@@ -1,0 +1,31 @@
+
+	SQLite--操作数据库  util/MySQLiteOpenHelper.java & util/DataHandler.java
+
+	BroadcastReceiver--监听开机启动  broadcast/BroadcastReceiverForBoot.java
+	BroadcastReceiver--监听软件安装卸载情况  broadcast/BroadcastReceiverForInstall.java
+	BroadcastReceiver--监听网络状态  broadcast/BroadcastReceiverForNetChange.java
+	BroadcastReceiver--监听收到短信  broadcast/BroadcastReceiverForMessage.java
+	BroadcastReceiver--监听拨打电话  broadcast/BroadcastReceiverForPhone.java
+	
+	ContentProvider--监听发信箱的数据变化并获取数据   MyRun.initMessageObserver() & contentproviders/SmsObserver
+	
+	Handler--线程间通信  service/LocationService.java/定位监听
+	
+	TelephonyManager--监听来电和接听  service/PhoneService.java
+	
+	PowerManager & WakeLock -- 电源锁 service/LocationService.java
+	
+	MediaRecorder--话筒录音  service/PhoneService.java
+	
+	JUnit--测试 test & AndroidMainfest.xml
+	
+	Map--百度地图定位 locSDK_4.0.jar & liblocSDK4.so & service/LocationService.java
+	Map--百度LBS.云  util/lbs
+	MAP--百度Android SDK baidumapapi_v2_3_0.jar & libBaiduMapSDK_v2_3_0.so & activity/MainActivity.java
+	
+	JPush--极光推送 jpush-sdk-release1.5.2.jar & libjpush.so & broadcast/BroadcastReceiverForJPush.java & AndroidManifest.xml
+	
+	Util--文件Socket断点续传  service/UploadService.java & util/upload & DataHandler.java & MySQLiteOpenHelper.java
+	
+	
+	

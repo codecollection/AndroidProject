@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_activity_1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/button11"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="going" />
+    
+    <!-- 第二种添加Fragment的方案：通过代码动态添加。 -->
+    <Button
+        android:id="@+id/button_activity_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="添加Fragment" />
+
+    <!-- 第一种添加Fragment的方案：直接在XML布局里添加。 -->
+    <!-- <fragment
+        android:id="@+id/activity_myfragment"
+        android:name="com.android.zouchongjin.activity.MyFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" /> -->
+
+</LinearLayout>

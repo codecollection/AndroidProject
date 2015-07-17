@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.android.zouchongjin">
+
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT"/><!-- 创建桌面快捷方式 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/><!-- 粗糙定位（network） -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/><!-- 精确定位（GPS+network） -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.CHANGE_CONFIGURATION" /><!-- 修改配置，如改变屏幕方向 -->
+    <uses-permission android:name="android.permission.INTERNET" /><!-- HTTP请求 -->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/><!-- SDCard中创建和删除文件权限 -->
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS"/><!-- 拨打电话权限 -->
+    <uses-permission android:name="android.permission.READ_CALL_LOG"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS"/><!-- 读取内容，如通讯录 -->
+    <uses-permission android:name="android.permission.READ_LOGS"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/><!-- 获取手机状态 -->
+    <uses-permission android:name="android.permission.READ_SMS"/><!-- 读取短信 -->
+    <uses-permission android:name="android.permission.RECEIVE_SMS"/><!-- 接收短信权限 -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/><!-- 使用话筒录音 -->
+    <uses-permission android:name="android.permission.SEND_SMS"/><!-- 发送短信 -->
+    <uses-permission android:name="android.permission.VIBRATE"/><!-- .service.FourthService:震动功能 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK"/><!-- 屏幕锁定模式(MediaPlayer) -->
+    <uses-permission android:name="android.permission.WRITE_CONTACTS"/><!-- 写入内容，如通讯录 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/><!-- SDCard中写入数据权限 -->
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+
+    <!-- 二维码生成和识别 -->
+    <!-- <uses-permission android:name="android.permission.VIBRATE" /> -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <application
+        android:allowBackup="true"
+        android:name=".MyApplication"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+
+        <!-- 
+        	android:label ： 面包屑的内容。
+        	android:alwaysRetainTaskState="true" : 如果根activity设置此属性为true，用户离开后重新回来的时候 保留堆栈内的所有activity。
+        	android:clearTaskOnLaunch="true" ： 如果根activity设置此属性为true，用户离开后重新回来的时候 只剩下根activity。
+        	android:finishOnTaskLaunch="true" ：作用于单个activity，用户离开后重新回来的时候 此activity已不存在。
+        	android:launchMode : 
+        		standard(默认) :	 A-B-C-D + D = A-B-C-D-D; A-B-D-C + D = A-B-D-C-D
+        		singleTop :	A-B-C-D + D = A-B-C-D(单例D); A-B-D-C + D = A-B-D-C-D(多个D)。Activity会调用onNewIntent()方法。新activity处理新intent时，可以“返回”。现有activity处理新的intent时，不能“返回”。
+        		singleTask : A-D-C-B + D = A-D。上面的Activity都被移除。Activity会调用onNewIntent()方法。
+        		singleInstance : 系统中多个应用共用这个应用。Activity 被限定于只能有一个实例。Activity会调用onNewIntent()方法。
+        	android:configChanges : 配置改变时，不重新实例化Activity。（Activity调用方法onConfigurationChanged）
+        		orientation ：屏幕方向改变
+        		keyboardHidden ：键盘的可用性发生了改变
+        	android:screenOrientation ：屏幕显示方向（声明应用程序所有的屏幕方向：<uses-feature android:name="android.hardware.screen.portrait"/>）
+        		landscape ：横向显示
+        		portrait ：纵向显示
+         -->
+        <activity android:name="com.android.zouchongjin.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Activity -->
+        <activity android:name="com.android.zouchongjin.activity.FirstActivity"></activity>
+        <activity android:name="com.android.zouchongjin.activity.SecondActivity"></activity>
+        <activity android:name="com.android.zouchongjin.activity.MyLoader"></activity>
+
+        <!-- BroadcastReceiver -->
+        <receiver android:name="com.android.zouchongjin.broadcast.MyBroadcastReceiver">
+            <intent-filter>
+                <action android:name="com.android.demo.HiMessage"/><!-- 拦截自定义的广播 -->
+            </intent-filter>
+        </receiver>
+
+        <!-- ContentProvider -->
+        <activity android:name="com.android.zouchongjin.contentProvider.MyContentResolverActivity"></activity>
+        <provider
+            android:name="com.android.zouchongjin.contentProvider.MyContentProvider"
+            android:authorities="sundy.android.demo.provider" >
+        </provider>
+
+        <!-- Service -->
+        <activity android:name="com.android.zouchongjin.service.FirstActivity"></activity>
+        <service android:name="com.android.zouchongjin.service.MyService"></service>
+        <service android:name="com.android.zouchongjin.service.MyBindService"></service>
+        <service android:name="com.android.zouchongjin.service.MyIpcBindService"></service>
+        <service android:name="com.android.zouchongjin.service.MyIntentService"></service>
+        <service android:name="com.android.zouchongjin.service.remote.server.service.MyService">
+            <intent-filter>
+                <action android:name="com.android.zouchongjin.remoteService.MyService"/>
+            </intent-filter>
+        </service>
+        <activity android:name=".service.remote.client.MyRemoteActivity"></activity>
+
+        <!-- UI -->
+        <activity android:name="com.android.zouchongjin.ui.FirstActivity"></activity>
+        <activity android:name="com.android.zouchongjin.ui.ListViewActivity"></activity>
+
+        <!-- Sensor -->
+        <activity android:name="com.android.zouchongjin.e_sensor.MySensorActivity"></activity>
+
+        <!-- Shortcut -->
+        <activity android:name=".h_shortcut.MyShortcutActivity">
+			<intent-filter>
+			    <action android:name="android.intent.action.CREATE_SHORTCUT"/>
+			</intent-filter>
+        </activity>
+
+        <!-- Thread -->
+        <activity android:name=".i_thread.MyHandlerActivity"></activity>
+        <activity android:name=".i_thread.MyAsyncTaskActivity"></activity>
+
+        <!-- 二维码生成和识别 -->
+        <activity android:name="com.android.zouchongjin.demo.zxing.BarCodeTestActivity"></activity>
+        <activity
+            android:configChanges="orientation|keyboardHidden"
+            android:name="com.google.zxing.client.android.activity.CaptureActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:windowSoftInputMode="stateAlwaysHidden" >
+        </activity>
+
+        <!-- webviewshell -->
+        <activity android:name=".webviewshell.MainActivity"></activity>
+
+        <!-- JUnit -->
+        <uses-library android:name="android.test.runner"/>
+
+    </application>
+
+    <!-- JUnit -->
+	<instrumentation
+	    android:name="android.test.InstrumentationTestRunner"
+	    android:targetPackage="com.android.zouchongjin"
+	    android:label="Test My App" />
+
+</manifest>

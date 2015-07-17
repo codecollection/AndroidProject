@@ -1,0 +1,91 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/button0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Activity" />
+
+            <Button
+                android:id="@+id/button_mybroadcast"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="自定义的广播接收者" />
+
+            <Button
+                android:id="@+id/button_db_5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Content Provider" />
+
+            <Button
+                android:id="@+id/button02"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Service" />
+
+            <Button
+                android:id="@+id/button03"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/UI" />
+
+            <Button
+                android:id="@+id/button05"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Sensor" />
+
+            <Button
+                android:id="@+id/button09"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Handler" />
+
+            <Button
+                android:id="@+id/button_shortcut_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="设置桌面快捷方式" />
+
+            <Button
+                android:id="@+id/button10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/AsyncTask" />
+            
+            <Button
+                android:id="@+id/button11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="二维码生成和识别" />
+            
+            <Button
+                android:id="@+id/button12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="WebView壳" />
+
+            <Button
+                android:id="@+id/button_main_loader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Loader" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

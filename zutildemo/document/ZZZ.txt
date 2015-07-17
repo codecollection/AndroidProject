@@ -1,0 +1,157 @@
+
+环境变量(方便使用命令工具)
+	ANDROID_HOME=D:\JAVA\Software\adt-bundle-windows-x86-20130219\sdk
+	Path=..;%ANDROID_HOME%\platform-tools;%ANDROID_HOME%\tools
+
+adb工具
+	adb install d:\sl.apk
+	adb uninstall com.sky.mine
+
+查看所有软件的内存占用情况
+	adb shell(需要打开模拟器)
+	ps
+	
+查看layout文件的效率：layoutopt
+查看界面层级结构：sdk\tools\hierarchyviewer.bat
+设计.9.png图片：draw9patch.bat
+
+SQLite(模拟器需要启动)
+	adb shell
+	cd data/data/com.example.demo/databases
+	sqlite3 zouchongjin
+	.schema
+	select * from user;
+
+apktool+dex2jar+xjad
+	apktool d G:\360Downloads\Apk\AndroidHelp.apk G:\360Downloads\Apk\AndroidHelp
+	解压apk-->dex2jar G:\360Downloads\Apk\AndroidHelp\classes.dex
+
+Game引擎
+	www.wiyun.com
+	http://china.unity3d.com/
+	
+广告
+	http://munion.baidu.com
+	
+Activities : 界面
+	Fragments : 片段(3.0+)
+	Loaders : 加载器(3.0+)
+Services : 服务;数据处理
+Content Providers : 内容提供;提供多个程序间的数据存取
+Broadcast Receivers : 广播接收;负责对外部事件做出响应
+Intent : 意图;四个组件相互关联
+Binder : 捆绑;Linux的进程通信机制
+	
+
+assets  资源目录。读取此目录文件必须自定文件的路径，如：file:///android_asset/test.3gp。
+res/anim/		存放定义动画的XML文件
+
+res/drawable/	存图片资源。使用getResources().getDrawable(resourceId)获取。
+res/drawable-xxhdpi/ 1080*1920 1080p
+res/drawable-xhdpi/ 720*960 ; 720*1280 720p
+res/drawable-hdpi/  480*800 WVGA ; 480*854 FWVGA ; 540*960 QHD
+res/drawable-mdpi/  320*480 HVGA
+res/drawable-ldpi/  240*320 QVGA
+res/drawable-en/  国际化图片（英文）
+res/drawable-zh/  国际化图片（中文）
+
+res/layout/  界面布局文件
+res/layout-480x320/  屏幕适配
+res/layout-320x240/  屏幕适配
+
+res/raw/		存放原始文件，如音频视频，不会被编译，使用getResources().openRawResource(R.raw.filename)获取
+
+res/values/ 	存放各种类型数据。
+	array.xml : 定义数组。
+	colors.xml : 定义颜色和颜色字串数值。getResources().getDrawable(resourceId)或getResources().getColor(resourceId)。
+	dimens.xml : 定义尺寸数据。getResources().getDimension(resourceId)。
+	strings.xml : 定义字符串和数值。Activity中使用getResources().getString(resourceId)或getResources().getText(resourceId)获取。
+	styles.xml : 定义样式。
+res/values-en/
+	string.xml : 国际化文字（英文）
+res/values-en-rUS/
+	string.xml : 国际化文字（美式英文）
+res/values-zh/
+	string.xml : 国际化文字（中文）
+	
+res/xml/		在Activity中使用getResources().getXML()读取该目录下的XML资源文件
+
+
+<merge />:作为顶节点，被引入的时候会忽略顶节点
+<ScrollView></ScrollView>:滚动条
+	
+java.lang.Object
+	|_android.view.View
+		|_android.view.ViewStub		------------------------------------------------空占位
+		|_android.widget.TextView	-----------------------------------1.1、文本框
+			|_android.widget.EditText	-------------------------------1.2、文本输入框
+			|_android.widget.Button		-------------------------------1.3、按钮
+				|_android.widget.CompoundButton 
+						|_android.widget.RadioButton	---------------1.4.1、单选框（需要放在RadioGroup里）
+						|_android.widget.CheckBox		---------------1.5、复选框
+		|_android.widget.ImageView			---------------------------1.6、图片<ImageView android:src="@drawable/logo"/>
+			|_android.widget.ImageButton		-----------------------1.7、图片按钮<ImageButton android:src="@drawable/logo"/>
+		|_android.view.ViewGroup 
+			|_android.widget.LinearLayout	-----------2.1、线性布局管理器
+				|_android.widget.TableLayout	-------2.2.1、表格布局管理器(需要使用TableRow控制各行)
+				|_android.widget.TableRow		-------2.2.2、表格布局管理器中的行管理器(需要放在TableLayout里)
+				|_android.widget.RadioGroup		-----------------------1.4.2、单选框容器	
+			|_android.widget.FrameLayout	-----------2.3、框架布局管理器(叠加在同一位置)
+				|_android.widget.TimePicker	---------------------------1.8、时间控件
+				|_android.widget.DatePicker	---------------------------1.9、日期控件
+				|_android.widget.ScrollView	---------------------------1.10、滚动控件
+				|_android.widget.HorizontalScrollView	---------------1.10、横向滚动控件(调用fling()偏移)
+				|_android.widget.ViewAnimator
+					|_android.widget.ViewFlipper ------------------------------------多frame切换、左右滑动
+			|_android.widget.RelativeLayout	-----------2.4、相对布局管理器
+			|_android.widget.AdapterView<T extends android.widget.Adapter> 
+				|_android.widget.AbsSpinner 
+					|_android.widget.Spinner 	-----------------------1.11、下拉框(设置内容：.setAdapter(spinnerAdapter))
+				|_android.widget.AbsListView
+ 	 	 	 	  	|_android.widget.ListView	-----------------------1.12、列表显示(设置内容.setAdapter(listAdapter))
+ 	 	 	|_android.support.v4.view.ViewPager -------多页面侧面滑动效果
+ 	 	 |_android.widget.ProgressBar	-------------------------------1.13、进度条
+	|_android.widget.Toast	-------------------------------------------1.14、对话框
+	|_android.widget.BaseAdapter --------------------------------------implements ListAdapter SpinnerAdapter
+		|_android.widget.ArrayAdapter<T>	---------------------------
+		|_android.widget.SimpleAdapter	-------------------------------
+	|_android.view.(ViewGroup.LayoutParams)
+		|_android.view.(ViewGroup.MarginLayoutParams)
+			|_android.widget.(LinearLayout.LayoutParams)		Linear布局管理器的参数
+				 |_android.widget.(TableLayout.LayoutParams)	Table布局管理器的参数
+				 |_android.widget.(TableRow.LayoutParams)		Table布局管理器的行管理器的参数
+			|_android.widget.(FrameLayout.LayoutParams)			Frame布局管理器的参数
+			|_android.widget.(RelativeLayout.LayoutParams)		Relative布局管理器的参数
+ 	   
+			
+ArrayAdapter<String> aAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, {"北京","上海"});
+ArrayAdapter<String> aAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, {"a","b","c","d","e","f","a","b","c","d","e","f"});
+			
+sp:字体大小;dp:宽度高度;
+
+TextView：
+	tv.setText(Html.fromHtml("..."));
+
+应用A启动另一个应用B的Activity
+  A:
+	Intent intent = new Intent();
+    intent.setClassName("com.android.zouchongjin", "com.android.zouchongjin.PublicActivity");
+    startActivity(intent);
+  B:
+  	<activity android:name="com.android.zouchongjin.PublicActivity">
+	  	<intent-filter>
+			<action android:name=""/>
+		</intent-filter>
+	</activity>
+	
+	
+关闭应用
+	1、杀死进程(推荐使用)
+		android.os.Process.killProcess(android.os.Process.myPid())
+	2、终止当前正在运行的JAVA虚拟机，导致程序终止
+		System.exit(0)
+	3、强制关闭与该包有关联的一切执行
+		ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+		manager.restartPackage(getPackageName());
+		<user-permission android:name="android.permission.RESTART_PACKAGES"/>
+		

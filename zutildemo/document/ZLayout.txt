@@ -1,0 +1,266 @@
+
+android:padding		// 设置上、下、左、右4个边缘的填充距离，必须是一个大小值
+android:descendantFocusability// 父和子都可点击时触发的规则
+		// beforeDescendants : 父优先
+		// afterDescendants : 子优先
+		// blocksDescendants : 子失效
+android:layout_weight	// 空间所占的权重
+		
+LinearLayout
+	
+	android:baselineAligned  基线对齐
+	android:baselineAlignedChildIndex  以指定子组件作为基线对齐
+	android:gravity 指定该物体放入其容器的重心位置，取值为下列之一： 
+		top上方，物体大小不变 
+		bottom下方，物体大小不变 
+		left左方，物体大小不变
+		right右方，物体大小不变  
+		center_vertical垂直方向的中间，物体大小不变  
+		fill_vertical填满垂直方向，自动进行大小调整 
+		center_horizontal水平方向的中间，大小不变 
+		fill_horizontal填满水平方向，自动进行大小调整 
+		center居中（既是水平也是垂直方向的中间） 
+		fill填满整个容器 
+		clip_vertical 
+		clip_horizontal
+	android:orientation 布局方向，取值为下列之一：  
+		horizontal水平的 
+		vertical垂直的（默认值）
+	android:weightSum 组件的比重和
+		
+	android:layout_gravity 当前子组件的中心位置
+	android:layout_height 当前子组件的高度
+	android:layout_weight 当前子组件的空间比重，取值为浮点数
+	android:layout_width 当前子组件的宽度
+	
+RelativeLayout
+
+	android:gravity 设置添加组件的重心
+	android:ignoreGravity 忽略布局重心的影响
+  	
+  	android:layout_above 将当前组件的下边缘放置于参照组件之上，该属性 为参照组件的ID  
+  	android:layout_alignBaseline 当前组件与参照组件的基线对齐，该属性为参照组件的ID  
+  	android:layout_alignBottom 当前组件与参照组件的下边界对齐，该属性为参照组件的ID  
+  	android:layout_alignLeft 当前组件与参照组件的左边界对齐，该属性为参照组件的ID  
+  	android:layout_alignParenBottom 当前组件与父组件的下边界对齐，true或false 
+  	android:layout_alignParentLeft 当前组件与父组件的左边界对齐，true或false 
+  	android:layout_alignParentRight 当前组件与父组件的右边界对齐，true或false 
+  	android:layout_alignParentTop 当前组件与父组件的上边界对齐，true或false 
+  	android:layout_alignRight 当前组件与参照组件的右边界对齐，该属性为参照组件的ID  
+	android:layout_alignTop  当前组件与参照组件的上边界对齐，该属性为参照组件的ID 
+	android:layout_alignWithParentIfMissing true或false  
+	android:layout_below  将当前组件的上边缘放置于参照组件之下，该属性为参照组件的ID  
+	android:layout_centerHorizontal 当前组件放置到父组件的水平居中的位置
+	android:layout_centerInParent 当前组件放置到父组件的重心位置
+	android:layout_centerVertical 当前组件放置到父组件垂直居中的位置
+	android:layout_toLeftOf 将当前组件的右边缘放置于参照组件之下，该属性为参照组件的ID  
+	android:layout_toRightOf 将当前组件的左边缘放置于参照组件之下，该属性为参照组件的ID 
+
+AbsoluteLayout
+
+	android:layout_x 当前组件的x坐标位置（从左到右方向）
+	android:layout_y 当前组件的y坐标位置（从上到下方向）
+
+FrameLayout 
+
+	android:foreground 前置图片
+	android:foregroundGravity 前置图片重心
+	android:measureAllChildren 在切换显示时是否侧重所有子组件的大小
+	
+	android:layout_gravity 当前子组件所添加的重心位置
+	android:layout_marginBottom="200dip" 当前子组件所在的位置离下边缘的距离
+
+TableLayout 
+
+	android:collapseColumns  设置允许折叠的列编号，列编号基于0，属性值可以是单个或多个列编号，编号与编号直接用逗号”,”分隔  
+	android:shrinkColumns  设置允许收缩的列编号，列编号基于0，属性值可以是单个或多个列编号，编号与编号直接用逗号”,”分隔
+	android:stretchColumns  设置允许伸展的列编号，列编号基于0，属性值可以是单个或多个列编号，编号与编号直接用逗号”,”分隔
+
+TableRow_Cell 
+
+	android:layout_column 设置该单元格的列编号（基于0） 
+	android:layout_span  指明该单元格可以跨越的列数
+
+ListView
+
+	android:choiceMode 选择模式  
+	android:divider 分割线颜色
+	android:dividerHeight 分割线高度  
+	android:entries  指定绑定到当前列表视图的一个数组资源 
+	android:footerDividersEnabled 是否允许页脚分割线 
+	android:headerDividersEnabled 是否允许页眉分割线
+	
+ImageView
+	
+	android:adjustViewBounds 是否调整视图范围 	// true:可去掉上下的留白  是否保持宽高比。需要与maxWidth、MaxHeight一起使用，否则单独使用没有效果。
+	android:baselineAlignBottom 是否按照下端基线对齐 
+	android:cropToPadding 是否按照填充进行裁剪 
+	android:maxHeight 设置最大高度 
+	android:maxWidth 设置最大宽度  
+	android:scaleType  缩放类型，取值为下列之一： 
+		matrix 用矩阵来绘制，动态缩小放大图片来显示。
+		fitXY 拉伸图片（不按比例） 以填充View的宽高
+		fitStart 把图片按比例扩大/缩小到View的宽度，左上显示
+		fitCenter 把图片按比例扩大/缩小到View的宽度，居中显示
+		fitEnd 把图片按比例扩大/缩小到View的宽度，显示在View的下部分位置
+		center 大小不变 居中 太大时截取图片的居中部分显示
+		centerCrop 比例不变 放大 居中 内容会丢失
+		centerInside 比例不变 缩小 居中
+	android:src 设置绘制用内容 
+	android:tint 设置染色颜色值
+	
+TextView 
+
+	android:autoLink 是否自动链接（内容是网址或是电子邮件时） 
+	android:autoText 自动更新拼音错误 
+	android:bufferType 设置缓冲区类型 
+	android:capitalize 自动大写 
+	android:cursorVisible 光标是否可见，true或false 
+	android:digits  所接受的数字字符 
+	android:drawableBottom 在文本下方绘制 		textView.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
+	android:drawableLeft 在文本左方绘制 
+	android:drawablePadding 绘制填充区 
+	android:drawableRight 在文本右方绘制 
+	android:drawableTop 在文本上方绘制  
+	android:editable 是否可编辑，true或false 
+	android:editorExtras   
+	android:ellipsize 当内容过长时会自动打断单词内容 
+	android:ems   
+	android:enabled 是否可用，true或false 
+	android:freezesText 是否冻结文本 
+	android:gravity 指明文本的重心位置 
+	android:height 高度值 
+	android:hint 指示内容 
+	android:imeActionId  
+	android:imeActionLabel   
+	android:imeOptions 输入法选项 
+	android:includeFontPadding   
+	android:inputMethod 指定输入法 
+	android:inputType  输入类型，取值为下列之一：
+		none  
+		text普通文本  
+		textCapCharacters大写字符 
+		textCapWords单词首字母大写 
+		textCapSentences句子首字母大写 
+		textAutoCorret自动更正 
+		textAutoComplete自动完成 
+		textMultiLine多行内容 
+		textUri，Uri  
+		textEmailAddress电子邮件地址 
+		textEmailSubject电子邮件主题 
+		textShortMessage短消息 
+		textLongMessage长消息 
+		textPersonName个人姓名 
+		textPostalAddress邮政地址 
+		textPassword密码  
+		textVIsiblePassword可见的密码 
+		textWebEditText网页格式 
+		textFilter过滤字符串 
+		textPhonetic语言发音 
+		number数字  
+		numberSigned有符号数字
+		numberDecimal十进制数字 
+		phone电话号码 
+		datetime日期时间 
+		date日期 
+		time时间 
+	android:lineSpacingExtra  
+	android:lineSpacingMultiplier   
+	android:lines 设置文本行数 
+	android:linksClickable   
+	android:marqueeRepeatLimit 来回移动的动画次数 
+	android:maxEms   
+	android:maxHeight 物体的最大高度 
+	android:maxLength 最大文本长度 
+	android:maxLines 最大行数 
+	android:minWidth 物体的最大宽度 
+	android:minEms   
+	android:minHeight 物体的最小高度 
+	android:minLines 最小文本行数 
+	android:minWidth 物体的最小宽度 
+	android:numeric 是否使用数字输入方式 
+	android:password 是否使用密码输入方式 
+	android:phonenumber 是否使用电话号码输入方式 
+	android:privateImeOptions  
+	android:scrollHorizontally  
+	android:selectAllOnFocus   
+	android:shadowColor 文本阴影颜色 
+	android:shadowDx 阴影的水平偏移 
+	android:shadowDy 阴影的垂直偏移 
+	android:shadowRadius 阴影的半径  
+	android:singleLine 是否单行（不自动换行） 
+	android:text  显示的文本内容  
+	android:textApperance 基本字体颜色、字样、大小和样式 
+	android:textColor 文本颜色 
+	android:textColorHighlight 文本高亮颜色 
+	android:textColorHint 文本提示颜色 
+	android:textColorLink 文本链接颜色 
+	android:textScaleX 文本缩放因数 
+	android:textSize 文本大小 
+	android:textStyle  文本样式，取值为下列之一： 
+		bold粗体 
+		italic斜体  
+		bolditalic粗斜体 
+	android:typeface 字样 
+		normal
+		sans
+		serif
+		monospace(等宽字体)
+	android:width 物体的高度
+
+Gallery 
+
+	android:animationDuration 动画持续时间 
+	android:gravity 添加组件的重心位置 
+	android:spacing 间隔空间  
+	android:unselectedAlpha 非选择条目的透明度
+	
+GridView 
+
+	android:columnWidth 指定列宽  
+	android:gravity  添加组件的重心位置 
+	android:horizontalSpacing 水平空间 
+	android:numColumns 指定列数 
+	android:strechMode 伸展模式
+	android:verticalSpacing 垂直空间	
+	
+AbsListView 
+
+	android:cacheColorHint 设置缓冲颜色  
+	android:drawSelectorOnTop 是否将选择器绘制在备选条目上方，取值为true或false 
+	android:fastScrollEnabled 允许快速滚动 
+	android:listSelector  指示选择器的内容 
+	android:scrollingCache 滚动时是否使用绘制缓冲，true或false 
+	android:smoothScrollbar 平滑滚动条 
+	android:stackFromBottom 从下方堆叠条目 
+	android:textFilterEnbled 是否允许过滤 
+	android:transcriptMode 设置抄本模式	
+	
+ScrollView
+
+	fadingEdge属性用来设置拉滚动条时 ，边框渐变的放向。
+		none（边框颜色不变），
+		horizontal（水平方向颜色变淡），
+		vertical（垂直方向颜色变淡）。
+	fadingEdgeLength用来设置边框渐变的长度	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

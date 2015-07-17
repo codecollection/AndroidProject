@@ -1,0 +1,75 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion "23.0.0 rc3"
+
+    defaultConfig {
+        applicationId "com.zandroid.zloc"
+        minSdkVersion 8
+        targetSdkVersion 22
+        versionCode 3
+        versionName "1.3.0"
+    }
+
+//    productFlavors {
+//        umeng {
+//            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "umeng"]
+//        }
+//        baidu {
+//            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "baidu"]
+//        }
+//        z360 {
+//            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "360"]
+//        }
+//    }
+
+    signingConfigs {
+        debug {
+            storeFile file("document/zloc.jks")
+            storePassword "zerozcj19881105"
+            keyAlias "zloc"
+            keyPassword "zerozcj19881105"
+        }
+        release {
+            storeFile file("document/zloc.jks")
+            storePassword "zerozcj19881105"
+            keyAlias "zloc"
+            keyPassword "zerozcj19881105"
+        }
+    }
+
+    buildTypes {
+        debug {
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+            versionNameSuffix "-debug"
+            minifyEnabled false
+            zipAlignEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.debug
+        }
+        release {
+            // 不显示Log
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            // 混淆
+            minifyEnabled true
+            // 压缩
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            shrinkResources true
+            // 混淆配置文件
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            // 证书
+            signingConfig signingConfigs.release
+        }
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:22.2.0'
+    compile project(':zutil')
+}

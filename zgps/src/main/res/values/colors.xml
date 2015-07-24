@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#000000</color>
+	<color name="white">#FFFFFF</color>
+	
+	<!-- 灰色 -->
+	<color name="gray">#CBCBCB</color>
+	
+	<!-- 界面背景的默认颜色 -->
+	<color name="bg">#E1E1E1</color>
+	
+	<!-- 红色 -->
+	<color name="red">#FF0000</color>
+	
+	<!-- 文本的默认颜色 -->
+	<color name="text">#333333</color>
+	
+</resources>

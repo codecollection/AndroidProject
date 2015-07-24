@@ -1,0 +1,15 @@
+zgps.keystore
+	密码：thanonezgps
+	MD5: 69:0A:53:C1:44:08:AA:B1:CD:87:D0:D9:87:FD:80:25
+	SHA1: 56:0E:53:EA:EB:6B:91:3B:C1:06:90:CA:A9:F8:11:4D:E8:03:E4:3F
+	SHA256: 45:15:EC:8F:C0:19:F4:CF:5C:1C:D1:5A:43:3D:A4:1F:0F:25:29:3F:9E:AC:CD:90:E9:C5:D3:1F:20:43:84:9F
+	签名算法名称: SHA256withRSA
+
+
+友盟
+	383185837@qq.com
+	
+百度
+	zouchongjin@sina.com
+	Android	发布版3tuaVQUG52ptIGYZ2KCLYIgT;测试版lgvXnZfxi2cCwyeifwCdlMji
+	WEB	EUFQQVfyLtMUGoYS8GmDv1bA

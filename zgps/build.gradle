@@ -1,0 +1,80 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion "23.0.0 rc3"
+
+    defaultConfig {
+        applicationId "com.thanone.zgps"
+        minSdkVersion 8
+        targetSdkVersion 22
+        versionCode 8
+        versionName "1.0."
+    }
+
+//    productFlavors {
+//        umeng {
+//            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "umeng"]
+//        }
+//        baidu {
+//            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "baidu"]
+//        }
+//        z360 {
+//            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "360"]
+//        }
+//    }
+
+    signingConfigs {
+        debug {
+            storeFile file("document/zgps.keystore")
+            storePassword "thanonezgps"
+            keyAlias "zgps"
+            keyPassword "thanonezgps"
+        }
+        release {
+            storeFile file("document/zgps.keystore")
+            storePassword "thanonezgps"
+            keyAlias "zgps"
+            keyPassword "thanonezgps"
+        }
+    }
+
+    buildTypes {
+        debug {
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+            versionNameSuffix "-debug"
+            minifyEnabled false
+            zipAlignEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.debug
+        }
+        release {
+            // 不显示Log
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            // 混淆
+            minifyEnabled true
+            // 压缩
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            shrinkResources true
+            // 混淆配置文件
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            // 证书
+            signingConfig signingConfigs.release
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:22.2.1'
+    compile project(':zutil')
+}

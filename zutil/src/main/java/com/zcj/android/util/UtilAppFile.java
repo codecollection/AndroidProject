@@ -1,20 +1,9 @@
 package com.zcj.android.util;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.Map;
-
-import org.apache.http.util.EncodingUtils;
-
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Resources.NotFoundException;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
@@ -26,13 +15,36 @@ import android.os.StatFs;
 import com.zcj.util.UtilFile;
 import com.zcj.util.UtilString;
 
+import org.apache.http.util.EncodingUtils;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Map;
+
 /**
- * 手机文件操作：SD卡、应用文件、媒体库
- * 
+ * 手机文件操作：SD卡、应用文件、媒体库、AndroidManifest.xml文件操作
+ *
  * @author ZCJ
  * @data 2013-11-14
  */
 public class UtilAppFile {
+
+    /** 获取AndroidManifest文件的application标签内的meta-data的值 */
+	public static String getXmlApplicationValue(Context context, String key) {
+        try {
+            ApplicationInfo appInfo = context.getPackageManager().getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);
+            return appInfo.metaData.getString(key);
+        } catch (Exception e) {
+            return null;
+        }
+	}
 
 	/** SD卡是否存在 */
 	public static boolean sdcardExist() {
@@ -63,7 +75,7 @@ public class UtilAppFile {
 	 * 其他应用读取文件的方法：File file = new
 	 * File("/data/data/com.xxx.xxx/files/fileName");<br/>
 	 * 注：File存储的文件都可以手动打开查看内容<br/>
-	 * 
+	 *
 	 * @param context
 	 * @param fileName
 	 *            文件名
@@ -102,7 +114,7 @@ public class UtilAppFile {
 	 * 其他应用读取文件的方法：File file = new
 	 * File("/data/data/xxx.xxx.xxx/files/fileName");<br/>
 	 * 注：File存储的文件都可以手动打开查看内容<br/>
-	 * 
+	 *
 	 * @param context
 	 * @param fileName
 	 *            文件名
@@ -122,7 +134,7 @@ public class UtilAppFile {
 
 	/**
 	 * 读取文件里的内容 文件目录：/data/data/xxx.xxx.xxx/files/fileName
-	 * 
+	 *
 	 * @param context
 	 * @param fileName
 	 *            文件名
@@ -149,7 +161,7 @@ public class UtilAppFile {
 
 	/**
 	 * 读取图片的内容 文件目录：/data/data/xxx.xxx.xxx/files/fileName
-	 * 
+	 *
 	 * @param context
 	 * @param fileName
 	 *            图片文件名
@@ -176,7 +188,7 @@ public class UtilAppFile {
 
 	/**
 	 * 读取项目静态文件里的内容 文件目录：res/raw/fileName
-	 * 
+	 *
 	 * @param context
 	 * @param rawResourceId
 	 * @return
@@ -199,7 +211,7 @@ public class UtilAppFile {
 
 	/**
 	 * 计算SD卡的剩余空间
-	 * 
+	 *
 	 * @return 返回-1，说明没有安装SD卡
 	 */
 	@SuppressWarnings("deprecation")
@@ -242,7 +254,7 @@ public class UtilAppFile {
 		mediaScanIntent.setData(contentUri);
 		ctx.sendBroadcast(mediaScanIntent);
 	}
-	
+
 	/**
 	 * 获取网络图片的数据
 	 * @param imgUrl
@@ -262,7 +274,7 @@ public class UtilAppFile {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * 获取网络图片的数据
 	 * @param imgUrl 图片URL

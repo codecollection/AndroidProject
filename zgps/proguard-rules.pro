@@ -20,22 +20,22 @@
 #}
 
 
--libraryjars libs/arm64-v8a/liblocSDK5.so
--libraryjars libs/armeabi/libBaiduMapSDK_v3_4_0_15.so
--libraryjars libs/armeabi/libbspatch.so
--libraryjars libs/armeabi/liblocSDK5.so
--libraryjars libs/armeabi-v7a/libBaiduMapSDK_v3_4_0_15.so
--libraryjars libs/armeabi-v7a/liblocSDK5.so
--libraryjars libs/mips/liblocSDK5.so
--libraryjars libs/mips64/liblocSDK5.so
--libraryjars libs/x86/liblocSDK5.so
--libraryjars libs/x86_64/liblocSDK5.so
-
--libraryjars libs/android-support-v4.jar
--libraryjars libs/baidumapapi_v3_4_0.jar
--libraryjars libs/gson-2.1.jar
--libraryjars libs/locSDK_5.2.jar
--libraryjars libs/umeng-update-v2.4.2.jar
+#-libraryjars libs/arm64-v8a/liblocSDK5.so
+#-libraryjars libs/armeabi/libBaiduMapSDK_v3_4_0_15.so
+#-libraryjars libs/armeabi/libbspatch.so
+#-libraryjars libs/armeabi/liblocSDK5.so
+#-libraryjars libs/armeabi-v7a/libBaiduMapSDK_v3_4_0_15.so
+#-libraryjars libs/armeabi-v7a/liblocSDK5.so
+#-libraryjars libs/mips/liblocSDK5.so
+#-libraryjars libs/mips64/liblocSDK5.so
+#-libraryjars libs/x86/liblocSDK5.so
+#-libraryjars libs/x86_64/liblocSDK5.so
+#
+#-libraryjars libs/android-support-v4.jar
+#-libraryjars libs/baidumapapi_v3_4_0.jar
+#-libraryjars libs/gson-2.1.jar
+#-libraryjars libs/locSDK_5.2.jar
+#-libraryjars libs/umeng-update-v2.4.2.jar
 
 
 # base

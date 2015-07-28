@@ -4,14 +4,8 @@
 .gradle
 .idea
 build
-zumeng/zumeng.iml
 zloc/zloc.iml
-zgps/zgps.iml
-zumeng/build
 zloc/build
-zgps/build
-zutil/build
-zutil/zutil.iml
 zutildemo/build
 zutildemo/zutildemo.iml
 AndroidProject.iml

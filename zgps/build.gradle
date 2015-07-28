@@ -15,9 +15,17 @@ android {
         versionName verName
     }
 
-    productFlavors {
-
-    }
+//    productFlavors {
+//        umeng {
+//            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "umeng"]
+//        }
+//        baidu {
+//            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "baidu"]
+//        }
+//        z360 {
+//            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "360"]
+//        }
+//    }
 
     signingConfigs {
         debug {

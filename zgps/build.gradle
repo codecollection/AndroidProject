@@ -1,28 +1,23 @@
 apply plugin: 'com.android.application'
 
+def verCode = 8
+def verName = "1.0.8"
+
 android {
     compileSdkVersion 22
     buildToolsVersion "23.0.0 rc3"
 
     defaultConfig {
-        applicationId "com.thanone.zgps"
+        applicationId "com.thanone.zgps"// 替换AndroidManifest.xml中的package，可以不配置
         minSdkVersion 8
         targetSdkVersion 22
-        versionCode 8
-        versionName "1.0.8"
+        versionCode verCode
+        versionName verName
     }
 
-//    productFlavors {
-//        umeng {
-//            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "umeng"]
-//        }
-//        baidu {
-//            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "baidu"]
-//        }
-//        z360 {
-//            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "360"]
-//        }
-//    }
+    productFlavors {
+
+    }
 
     signingConfigs {
         debug {
@@ -46,26 +41,48 @@ android {
             minifyEnabled false
             zipAlignEnabled false
             shrinkResources false
+            manifestPlaceholders = [
+                    UMENG_APPKEY_VALUE: "559b289b67e58e13b0004f90",
+                    BAIDU_APPKEY_VALUE: "3tuaVQUG52ptIGYZ2KCLYIgT"
+            ]
             signingConfig signingConfigs.debug
         }
         release {
-            // 不显示Log
+            buildConfigField "boolean", "LOG_DEBUG", "false"    // 不显示Log
+            minifyEnabled true  // 混淆
+            zipAlignEnabled true    // 混淆后的zip优化，默认为true，可不写。当不显示配置为true时，不会生成unaligned.apk
+            shrinkResources true    // 移除无用的resource文件
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'  // 混淆配置文件
+            manifestPlaceholders = [    // 属性配置
+                    UMENG_APPKEY_VALUE: "559b289b67e58e13b0004f90",
+                    BAIDU_APPKEY_VALUE: "3tuaVQUG52ptIGYZ2KCLYIgT"
+            ]
+            signingConfig signingConfigs.release    // 证书
+        }
+        releasezr {
             buildConfigField "boolean", "LOG_DEBUG", "false"
-            // 混淆
+            versionNameSuffix "zr"
             minifyEnabled true
-            // 压缩
             zipAlignEnabled true
-            // 移除无用的resource文件
             shrinkResources true
-            // 混淆配置文件
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            // 证书
+            manifestPlaceholders = [
+                    UMENG_APPKEY_VALUE: "559b289b67e58e13b0004f90",
+                    BAIDU_APPKEY_VALUE: "3tuaVQUG52ptIGYZ2KCLYIgT"
+            ]
             signingConfig signingConfigs.release
         }
     }
     sourceSets {
         main {
             jniLibs.srcDirs = ['libs']
+//            manifest.srcFile 'AndroidManifest.xml'
+//            java.srcDirs = ['src']
+//            resources.srcDirs = ['src']
+//            aidl.srcDirs = ['src']
+//            renderscript.srcDirs = ['src']
+//            res.srcDirs = ['res']
+//            assets.srcDirs = ['assets']
         }
     }
     lintOptions {

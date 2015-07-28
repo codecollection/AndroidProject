@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:orientation="vertical" >
+    
+    <include layout="@layout/main_header"/>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/d_circle" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_default"
+            android:text="微信公众平台：" />
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/text"
+            android:textSize="@dimen/text_size_default"
+            android:text="@string/dmetuanzhu_weixin" />
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/d_circle" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_default"
+            android:text="新浪官方微博：" />
+        
+        <TextView
+            android:id="@+id/dmetuanzhu_weibo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/dmetuanzhu_weibo"
+            android:textColor="@color/text_url"
+            android:textSize="@dimen/text_size_default" />
+
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:orientation="vertical" >
+
+        <LinearLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center_vertical"
+	            android:layout_marginBottom="10dp"
+	            android:layout_marginLeft="15dp"
+	            android:layout_marginRight="3dp"
+	            android:layout_marginTop="15dp"
+	            android:src="@drawable/d_circle" />
+	
+	        <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center_vertical"
+	            android:layout_marginBottom="10dp"
+	            android:layout_marginTop="15dp"
+	            android:textColor="@color/black"
+	            android:textSize="@dimen/text_size_default"
+	            android:text="买家客服" />
+        </LinearLayout>
+        
+        <LinearLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="40dp"
+                android:text="QQ："
+                android:textColor="@color/text"
+                android:textSize="@dimen/text_size_default" />
+	        
+	        <TextView
+	            android:id="@+id/dmetuanzhu_qq1"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center_vertical"
+	            android:textColor="@color/text_url"
+	            android:textSize="@dimen/text_size_default"
+	            android:text="@string/dmetuanzhu_qq_a" />
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="10dp"
+                android:text="邮箱："
+                android:textColor="@color/text"
+                android:textSize="@dimen/text_size_default" />
+	        
+	        <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center_vertical"
+	            android:layout_marginBottom="15dp"
+	            android:layout_marginTop="10dp"
+	            android:autoLink="email"
+	            android:textColor="@color/text_url"
+	            android:textSize="@dimen/text_size_default"
+	            android:text="@string/dmetuanzhu_email_a" />
+        </LinearLayout>
+        
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:orientation="vertical" >
+
+        <LinearLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center_vertical"
+	            android:layout_marginBottom="10dp"
+	            android:layout_marginLeft="15dp"
+	            android:layout_marginRight="3dp"
+	            android:layout_marginTop="15dp"
+	            android:src="@drawable/d_circle" />
+	
+	        <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center_vertical"
+	            android:layout_marginBottom="10dp"
+	            android:layout_marginTop="15dp"
+	            android:textColor="@color/black"
+	            android:textSize="@dimen/text_size_default"
+	            android:text="商家客服" />
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="40dp"
+                android:text="QQ："
+                android:textColor="@color/text"
+                android:textSize="@dimen/text_size_default" />
+	        
+	        <TextView
+	            android:id="@+id/dmetuanzhu_qq2"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center_vertical"
+	            android:textColor="@color/text_url"
+	            android:textSize="@dimen/text_size_default"
+	            android:text="@string/dmetuanzhu_qq_b" />
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="10dp"
+                android:text="邮箱："
+                android:textColor="@color/text"
+                android:textSize="@dimen/text_size_default" />
+	        
+	        <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center_vertical"
+	            android:textColor="@color/text_url"
+	            android:layout_marginBottom="15dp"
+	            android:layout_marginTop="10dp"
+	            android:autoLink="email"
+	            android:textSize="@dimen/text_size_default"
+	            android:text="@string/dmetuanzhu_email_b" />
+        </LinearLayout>
+        
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <RelativeLayout
+            android:id="@+id/dmetuanzhu_fssx"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:background="@color/background_light" >
+            <TextView 
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_centerInParent="true"
+	            android:layout_marginBottom="15dp"
+	            android:layout_marginTop="15dp"
+	            android:textColor="@color/text_url"
+	            android:textSize="@dimen/text_size_default"
+	            android:text="发送私信"/>
+        </RelativeLayout>
+        
+        <View
+	        android:layout_width="0.5dp"
+	        android:layout_height="fill_parent"
+	        android:background="@color/gray" />
+        
+        <RelativeLayout
+            android:id="@+id/dmetuanzhu_ljdt"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:background="@color/background_light" >
+	        <TextView 
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+				android:layout_centerInParent="true"
+	            android:layout_marginBottom="15dp"
+	            android:layout_marginTop="15dp"
+	            android:textColor="@color/text_url"
+	            android:textSize="@dimen/text_size_default"
+	            android:text="了解代团"/>
+	    </RelativeLayout>
+    </LinearLayout>
+
+    <include layout="@layout/layout_sub_editor" />
+    
+</LinearLayout>

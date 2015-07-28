@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/white" >
+
+    <com.zcj.android.view.ellipsizing.EllipsizingTextView
+        android:id="@+id/ctopic_describe"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:textColor="@color/text"
+        android:textSize="@dimen/text_size_default"
+        android:text="@string/default_loading" />
+    
+    <TextView
+        android:id="@+id/ctopic_showall"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginRight="10dp"
+        android:gravity="right"
+        android:textColor="@color/text"
+        android:textSize="@dimen/text_size_default"
+        android:text="@string/showall"/>
+
+    <LinearLayout
+        android:id="@+id/ctopic_imglayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/ctopic_img"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:adjustViewBounds="true"
+        	android:scaleType="fitXY"
+            android:src="@drawable/d_default_goods" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ctopic_tplayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/ctopic_wytp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:textColor="@color/text_hind"
+            android:textSize="@dimen/text_size_default"
+            android:text="我要投票" />
+
+        <LinearLayout
+            android:id="@+id/ctopic_tp_1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/ctopic_tp_1_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="5dp"
+                android:text="@string/default_loading"
+                android:drawableLeft="@drawable/d_diamonds_uncheck"
+                android:textSize="13sp"
+                android:textColor="#03CC96" />
+
+            <com.zcj.android.view.numberprogressbar.NumberProgressBar
+                android:id="@+id/ctopic_tp_1_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                custom:max="100"
+                custom:progress="0"
+                custom:progress_reached_bar_height="15dp"
+                custom:progress_reached_color="#03CC96"
+                custom:progress_text_color="#03CC96"
+                custom:progress_text_size="15sp"
+                custom:progress_unreached_bar_height="15dp"
+                custom:progress_unreached_color="#CCCCCC" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ctopic_tp_2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/ctopic_tp_2_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="5dp"
+                android:text="@string/default_loading"
+                android:drawableLeft="@drawable/d_diamonds_uncheck"
+                android:textSize="13sp"
+                android:textColor="#F05C4E" />
+
+            <com.zcj.android.view.numberprogressbar.NumberProgressBar
+                android:id="@+id/ctopic_tp_2_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                custom:max="100"
+                custom:progress="0"
+                custom:progress_reached_bar_height="15dp"
+                custom:progress_reached_color="#F05C4E"
+                custom:progress_text_color="#F05C4E"
+                custom:progress_text_size="15sp"
+                custom:progress_unreached_bar_height="15dp"
+                custom:progress_unreached_color="#CCCCCC" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ctopic_tp_3"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/ctopic_tp_3_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="5dp"
+                android:text="@string/default_loading"
+                android:drawableLeft="@drawable/d_diamonds_uncheck"
+                android:textSize="13sp"
+                android:textColor="#F58B41" />
+
+            <com.zcj.android.view.numberprogressbar.NumberProgressBar
+                android:id="@+id/ctopic_tp_3_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                custom:max="100"
+                custom:progress="0"
+                custom:progress_reached_bar_height="15dp"
+                custom:progress_reached_color="#F58B41"
+                custom:progress_text_color="#F58B41"
+                custom:progress_text_size="15sp"
+                custom:progress_unreached_bar_height="15dp"
+                custom:progress_unreached_color="#CCCCCC" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ctopic_tp_4"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/ctopic_tp_4_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="5dp"
+                android:text="@string/default_loading"
+                android:drawableLeft="@drawable/d_diamonds_uncheck"
+                android:textSize="13sp"
+                android:textColor="#03ADEB" />
+
+            <com.zcj.android.view.numberprogressbar.NumberProgressBar
+                android:id="@+id/ctopic_tp_4_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                custom:max="100"
+                custom:progress="0"
+                custom:progress_reached_bar_height="15dp"
+                custom:progress_reached_color="#03ADEB"
+                custom:progress_text_color="#03ADEB"
+                custom:progress_text_size="15sp"
+                custom:progress_unreached_bar_height="15dp"
+                custom:progress_unreached_color="#CCCCCC" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ctopic_tp_5"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/ctopic_tp_5_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="5dp"
+                android:text="@string/default_loading"
+                android:drawableLeft="@drawable/d_diamonds_uncheck"
+                android:textSize="13sp"
+                android:textColor="#03CC96" />
+
+            <com.zcj.android.view.numberprogressbar.NumberProgressBar
+                android:id="@+id/ctopic_tp_5_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                custom:max="100"
+                custom:progress="0"
+                custom:progress_reached_bar_height="15dp"
+                custom:progress_reached_color="#03CC96"
+                custom:progress_text_color="#03CC96"
+                custom:progress_text_size="15sp"
+                custom:progress_unreached_bar_height="15dp"
+                custom:progress_unreached_color="#CCCCCC" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

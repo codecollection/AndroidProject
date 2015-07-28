@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:orientation="vertical" >
+
+        <com.zcj.android.view.circleimageview.CircleImageView
+            android:id="@+id/dme_headimage"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="12dp"
+            android:layout_marginTop="40dp"
+            android:src="@drawable/d_default_head"
+            app:border_color="#6E6C6D"
+            app:border_width="5dp" />
+        
+        <LinearLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+	        android:layout_marginBottom="12dp"
+	        android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="Hi !"
+                android:textSize="20sp"/>
+
+            <TextView 
+                android:id="@+id/dme_name"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/dme_tologin"
+	            android:textSize="20sp"/>
+        </LinearLayout>
+        
+    </LinearLayout>
+    
+    <TableLayout
+        android:id="@+id/dme_zoomlayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+        
+        <TableRow>
+            <View 
+	            android:layout_width="0dp"
+	            android:layout_height="1dp"
+	            android:layout_weight="1"/>
+            <ImageView
+	            android:id="@+id/dme_tz"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_marginBottom="5dp"
+	            android:layout_marginTop="20dp"
+	            android:src="@drawable/d_me_tz" />
+            <View 
+	            android:layout_width="0dp"
+	            android:layout_height="1dp"
+	            android:layout_weight="1"/>
+            <ImageView
+	            android:id="@+id/dme_sc"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_marginBottom="5dp"
+	            android:layout_marginTop="20dp"
+	            android:src="@drawable/d_me_sc" />
+            <View 
+	            android:layout_width="0dp"
+	            android:layout_height="1dp"
+	            android:layout_weight="1"/>
+            <ImageView
+	            android:id="@+id/dme_fx"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_marginBottom="5dp"
+	            android:layout_marginTop="20dp"
+	            android:src="@drawable/d_me_fx" />
+            <View 
+	            android:layout_width="0dp"
+	            android:layout_height="1dp"
+	            android:layout_weight="1"/>
+        </TableRow>
+        
+        <TableRow>
+            <View 
+	            android:layout_width="0dp"
+	            android:layout_height="1dp"
+	            android:layout_weight="1"/>
+            <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:gravity="center_horizontal"
+	            android:textColor="#707070"
+	            android:text="团主" />
+            <View 
+	            android:layout_width="0dp"
+	            android:layout_height="1dp"
+	            android:layout_weight="1"/>
+            <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:gravity="center_horizontal"
+	            android:textColor="#707070"
+	            android:text="收藏" />
+            <View 
+	            android:layout_width="0dp"
+	            android:layout_height="1dp"
+	            android:layout_weight="1"/>
+            <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:gravity="center_horizontal"
+	            android:textColor="#707070"
+	            android:text="分享" />
+            <View 
+	            android:layout_width="0dp"
+	            android:layout_height="1dp"
+	            android:layout_weight="1"/>
+        </TableRow>
+        
+        <TableRow>
+            <View 
+	            android:layout_width="0dp"
+	            android:layout_height="1dp"
+	            android:layout_weight="1"/>
+            <ImageView
+	            android:id="@+id/dme_ql"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_marginBottom="5dp"
+	            android:layout_marginTop="20dp"
+	            android:src="@drawable/d_me_ql" />
+            <View 
+	            android:layout_width="0dp"
+	            android:layout_height="1dp"
+	            android:layout_weight="1"/>
+            <ImageView
+	            android:id="@+id/dme_aq"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_marginBottom="5dp"
+	            android:layout_marginTop="20dp"
+	            android:src="@drawable/d_me_aq" />
+            <View 
+	            android:layout_width="0dp"
+	            android:layout_height="1dp"
+	            android:layout_weight="1"/>
+            <ImageView
+	            android:id="@+id/dme_sz"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_marginBottom="5dp"
+	            android:layout_marginTop="20dp"
+	            android:src="@drawable/d_me_sz" />
+            <View 
+	            android:layout_width="0dp"
+	            android:layout_height="1dp"
+	            android:layout_weight="1"/>
+        </TableRow>
+        
+        <TableRow>
+            <View 
+	            android:layout_width="0dp"
+	            android:layout_height="1dp"
+	            android:layout_weight="1"/>
+            <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:gravity="center_horizontal"
+	            android:textColor="#707070"
+	            android:text="清理" />
+            <View 
+	            android:layout_width="0dp"
+	            android:layout_height="1dp"
+	            android:layout_weight="1"/>
+            <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:gravity="center_horizontal"
+	            android:textColor="#707070"
+	            android:text="消息" />
+            <View 
+	            android:layout_width="0dp"
+	            android:layout_height="1dp"
+	            android:layout_weight="1"/>
+            <TextView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:gravity="center_horizontal"
+	            android:textColor="#707070"
+	            android:text="设置" />
+            <View 
+	            android:layout_width="0dp"
+	            android:layout_height="1dp"
+	            android:layout_weight="1"/>
+        </TableRow>
+        
+        <TableRow>
+            <LinearLayout
+		        android:layout_width="fill_parent"
+		        android:layout_height="0dp"
+		        android:layout_weight="1"
+		        android:background="@color/white">
+		    </LinearLayout>
+        </TableRow>
+        
+    </TableLayout>
+
+</LinearLayout>

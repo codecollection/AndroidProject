@@ -1,0 +1,43 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <style name="Theme.NoTitleBar" parent="@android:style/Theme.NoTitleBar">
+        <item name="android:windowContentOverlay">@null</item> 
+    </style>
+    
+    <style name="d_listview">
+        <item name="android:layout_width">fill_parent</item>
+   		<item name="android:layout_height">0dp</item>
+       	<item name="android:layout_weight">1</item>      	
+       	<item name="android:divider">@color/gray</item>
+       	<item name="android:dividerHeight">0.5dp</item>
+       	<item name="android:fadingEdge">none</item><!-- 设置上边和下边是否有黑色的阴影 -->
+       	<item name="android:scrollingCache">false</item><!-- 解决：拖动时整个背景变黑 -->
+       	<item name="android:fastScrollEnabled">false</item><!-- 是否加上一个滑块方便滚动 -->
+    </style>
+    
+    <style name="d_listview_nodivider" parent="d_listview">
+		<item name="android:dividerHeight">0dp</item>
+    </style>
+    
+    <style name="d_listview_noweight" parent="d_listview">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">0</item>
+    </style>
+    
+    <style name="footbar">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:gravity">center</item>  
+        <item name="android:button">@null</item>  
+    </style>
+    
+    <style name="main_footbar_radio" parent="footbar">
+        <item name="android:padding">0dip</item>
+    </style>
+    
+</resources>

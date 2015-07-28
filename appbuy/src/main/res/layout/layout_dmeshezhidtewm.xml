@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:orientation="vertical" >
+    
+    <include layout="@layout/main_header"/>
+    
+    <ScrollView 
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <LinearLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+
+			<!-- TODO
+		    <LinearLayout
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_marginTop="20dp"
+		        android:background="@color/black" >
+		
+		        <TextView 
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_marginLeft="15dp"
+		            android:layout_marginTop="4dp"
+		            android:layout_marginBottom="4dp"
+		            android:layout_marginRight="10dp"
+		            android:textColor="@color/white"
+		            android:textSize="16sp"
+		            android:text="微信"/>
+		    </LinearLayout>
+		    
+		    <ImageView
+		        android:id="@+id/dmeshezhidtewm_weixin"
+		        android:layout_width="fill_parent"
+		        android:layout_height="260dp"
+		        android:layout_marginLeft="40dp"
+		        android:layout_marginRight="40dp"
+		        android:layout_marginTop="15dp"
+		        android:scaleType="fitCenter"
+		        android:src="@drawable/ewm_weixin" />-->
+		    
+		    <LinearLayout
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_marginTop="20dp"
+		        android:background="@color/black" >
+		
+		        <TextView 
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_marginLeft="15dp"
+		            android:layout_marginTop="4dp"
+		            android:layout_marginBottom="4dp"
+		            android:layout_marginRight="10dp"
+		            android:textColor="@color/white"
+		            android:textSize="16sp"
+		            android:text="微博"/>
+		    </LinearLayout>
+		    
+		    <ImageView
+		        android:id="@+id/dmeshezhidtewm_weibo"
+		        android:layout_width="fill_parent"
+		        android:layout_height="260dp"
+		        android:layout_marginLeft="40dp"
+		        android:layout_marginRight="40dp"
+		        android:layout_marginTop="15dp"
+		        android:scaleType="fitCenter"
+		        android:src="@drawable/ewm_weibo" />
+		    
+		    <LinearLayout
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_marginTop="20dp"
+		        android:background="@color/black" >
+		
+		        <TextView 
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_marginLeft="15dp"
+		            android:layout_marginTop="4dp"
+		            android:layout_marginBottom="4dp"
+		            android:layout_marginRight="10dp"
+		            android:textColor="@color/white"
+		            android:textSize="16sp"
+		            android:text="微社区"/>
+		    </LinearLayout>
+		    
+		    <ImageView
+		        android:id="@+id/dmeshezhidtewm_wsq"
+		        android:layout_width="fill_parent"
+		        android:layout_height="260dp"
+		        android:layout_marginLeft="40dp"
+		        android:layout_marginRight="40dp"
+		        android:layout_marginTop="15dp"
+		        android:scaleType="fitCenter"
+		        android:src="@drawable/ewm_wsq" />
+		
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

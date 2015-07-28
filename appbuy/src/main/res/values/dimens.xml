@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    
+    <!-- 字体的默认大小 -->
+    <dimen name="text_size_default">15sp</dimen>
+    
+    <!-- 提示字体的大小 -->
+    <dimen name="text_size_hind">10sp</dimen>
+    
+    <!-- 图标和字体的左间距 -->
+    <dimen name="text_drawable_left">3dp</dimen>
+    
+</resources>

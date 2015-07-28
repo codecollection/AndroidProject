@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+    
+	<fragment 
+        android:id="@+id/main_fragment_1"
+        android:name="com.thanone.appbuy.ui.AshowActivity"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+	<fragment 
+        android:id="@+id/main_fragment_2"
+        android:name="com.thanone.appbuy.ui.BshowActivity"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+     
+	<fragment 
+        android:id="@+id/main_fragment_3"
+        android:name="com.thanone.appbuy.ui.CtopicActivity"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+     
+	<fragment 
+        android:id="@+id/main_fragment_4"
+        android:name="com.thanone.appbuy.ui.DmeActivity"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+     
+	<RadioGroup 
+	    android:id="@+id/main_radiogroup"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:background="#DEDDDD"
+		android:orientation="horizontal"
+		android:gravity="center_vertical">
+         
+		<RadioButton
+		    android:id="@+id/main_footer_ashow"
+		    style="@style/main_footbar_radio"
+		    android:layout_height="43dp"
+		    android:layout_marginBottom="2dp"
+		    android:layout_marginTop="3dp"
+		    android:checked="false"
+		    android:drawableTop="@drawable/d_widget_bar_ashow" />
+		
+		<RadioButton
+		    android:id="@+id/main_footer_bshow"
+		    style="@style/main_footbar_radio"
+		    android:layout_marginBottom="2dp"
+		    android:layout_marginTop="3dp"
+		    android:checked="false"
+		    android:drawableTop="@drawable/d_widget_bar_bshow" />
+		
+		<RadioButton
+		    android:id="@+id/main_footer_ctopic"
+		    style="@style/main_footbar_radio"
+		    android:layout_marginBottom="2dp"
+		    android:layout_marginTop="3dp"
+		    android:checked="false"
+		    android:drawableTop="@drawable/d_widget_bar_ctopic" />
+		
+		<RadioButton
+		    android:id="@+id/main_footer_dme"
+		    style="@style/main_footbar_radio"
+		    android:layout_marginBottom="2dp"
+		    android:layout_marginTop="3dp"
+		    android:checked="false"
+		    android:drawableTop="@drawable/d_widget_bar_dme" />
+     </RadioGroup>
+
+</LinearLayout>

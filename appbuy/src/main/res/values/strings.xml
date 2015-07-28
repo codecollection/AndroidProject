@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>    
+    <string name="app_name">代团</string>
+    
+    <string name="network_not_connected">网络连接失败，请检查网络设置</string>
+    <string name="xml_parser_failed">数据解析异常</string>
+    <string name="io_exception_error">文件流异常</string>
+    <string name="http_status_code_error">网络异常，错误码：%d</string>
+    <string name="http_exception_error">网络异常，请求超时</string>
+    <string name="socket_exception_error">网络异常，读取数据超时</string>
+    <string name="app_run_code_error">应用程序运行时异常</string>
+
+    <string name="favorite_uncheck">未收藏</string>
+    <string name="favorite_checked">已收藏</string>
+    <string name="praise_uncheck">未赞</string>
+    <string name="praise_checked">已赞</string>
+    
+	<string name="dme_tologin">点击登录</string>
+	<string name="project_price2">国内参考价￥</string>
+	<string name="showall">全文</string>
+	<string name="showonly">收起</string>
+	
+	<string name="more_loading">加载中</string>
+	<string name="more_hasmore">点击加载更多</string>
+	<string name="more_nomore">已显示全部</string>
+	<string name="more_none">暂无数据</string>
+	
+	<string name="default_loading">加载中...</string>
+	
+	<string name="dmetuanzhu_weibo">代团官博</string>
+	<string name="dmetuanzhu_weixin">daituanDT</string>
+	<string name="dmetuanzhu_qq_a">2627501828</string>
+	<string name="dmetuanzhu_qq_b">2782235363</string>
+	<string name="dmetuanzhu_email_a">daituan001@163.com</string>
+	<string name="dmetuanzhu_email_b">daituan002@163.com</string>
+	
+</resources>

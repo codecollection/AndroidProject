@@ -1,0 +1,73 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion "23.0.0 rc3"
+
+    defaultConfig {
+        applicationId "com.thanone.palc"// 替换AndroidManifest.xml中的package，可以不配置
+        minSdkVersion 8
+        targetSdkVersion 22
+        versionCode 9
+        versionName "1.0.9"
+    }
+
+//    productFlavors {
+//        umeng {
+//            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "umeng"]
+//        }
+//        baidu {
+//            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "baidu"]
+//        }
+//        z360 {
+//            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "360"]
+//        }
+//    }
+
+    signingConfigs {
+        debug {
+            storeFile file("document/palc.keystore")
+            storePassword "thanonepalc"
+            keyAlias "thanone"
+            keyPassword "thanonepalc"
+        }
+        release {
+            storeFile file("document/palc.keystore")
+            storePassword "thanonepalc"
+            keyAlias "thanone"
+            keyPassword "thanonepalc"
+        }
+    }
+
+    buildTypes {
+        debug {
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+            versionNameSuffix "-debug"
+            minifyEnabled false
+            zipAlignEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.debug
+        }
+        release {
+            buildConfigField "boolean", "LOG_DEBUG", "false"    // 不显示Log
+            minifyEnabled false  // 混淆
+            zipAlignEnabled true    // 混淆后的zip优化，默认为true，可不写。当不显示配置为true时，不会生成unaligned.apk
+            shrinkResources true    // 移除无用的resource文件
+            signingConfig signingConfigs.release    // 证书
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:22.2.1'
+    compile project(':zutil')
+}

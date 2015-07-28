@@ -1,1 +1,1 @@
-include ':zutil', ':zgps'
+include ':zutil', ':zgps', ':palc'

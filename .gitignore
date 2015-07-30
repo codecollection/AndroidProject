@@ -4,9 +4,5 @@
 .gradle
 .idea
 build
-zloc/zloc.iml
-zloc/build
-zutildemo/build
-zutildemo/zutildemo.iml
 AndroidProject.iml
 local.properties

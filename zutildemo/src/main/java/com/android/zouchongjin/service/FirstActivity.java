@@ -181,7 +181,7 @@ public class FirstActivity extends Activity {
 	// 启动方代码
 	@OnClick(R.id.button_service_aidl)
 	private void aidl(View v) {
-		Log.v("zouchongjin", "点击了aidl按钮");
+		Log.v(MyConfig.TAG, "点击了aidl按钮");
 		Intent i = new Intent();
 		i.setComponent(new ComponentName("com.thanone.palc", "com.thanone.palc.service.UploadService"));
 		startService(i);

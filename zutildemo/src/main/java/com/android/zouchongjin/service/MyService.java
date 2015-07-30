@@ -1,11 +1,11 @@
 package com.android.zouchongjin.service;
 
-import com.android.zouchongjin.MyConfig;
-
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
+
+import com.android.zouchongjin.MyConfig;
 
 /**
  * 基本的服务
@@ -39,7 +39,7 @@ public class MyService extends Service {
 			public void run() {
 				for (int i = 0; i < 50; i++) {
 					try {
-						Log.i("zou", myname + i);
+						Log.i(MyConfig.TAG, myname + i);
 						Thread.sleep(1000);
 					} catch (InterruptedException e) {
 						e.printStackTrace();

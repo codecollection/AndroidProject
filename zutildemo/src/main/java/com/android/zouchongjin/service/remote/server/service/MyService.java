@@ -6,6 +6,7 @@ import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
 
+import com.android.zouchongjin.MyConfig;
 import com.android.zouchongjin.MyServiceInterface;
 
 /**
@@ -31,18 +32,18 @@ public class MyService extends Service {
 
 	@Override
 	public void onCreate() {
-		Log.i("zouchongjin", "MyService service oncreate");
+		Log.i(MyConfig.TAG, "MyService service oncreate");
 	}
 
 	@Override
 	public boolean onUnbind(Intent intent) {
-		Log.i("zouchongjin", "MyService service onunbind");
+		Log.i(MyConfig.TAG, "MyService service onunbind");
 		return super.onUnbind(intent);
 	}
 
 	@Override
 	public void onDestroy() {
-		Log.i("zouchongjin", "MyService service ondestory");
+		Log.i(MyConfig.TAG, "MyService service ondestory");
 	}
 
 }

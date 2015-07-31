@@ -8,8 +8,8 @@ android {
         applicationId "com.thanone.palc"// 替换AndroidManifest.xml中的package，可以不配置
         minSdkVersion 8
         targetSdkVersion 22
-        versionCode 9
-        versionName "1.0.9"
+        versionCode 10
+        versionName "1.1.0"
     }
 
 //    productFlavors {

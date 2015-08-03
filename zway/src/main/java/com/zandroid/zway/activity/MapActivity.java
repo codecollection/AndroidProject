@@ -120,7 +120,7 @@ public class MapActivity extends FragmentActivity {
 
         HttpUtilsHandler.getInstance().send(
                 HttpRequest.HttpMethod.GET,
-                LbsSaveHelp.poiListUrl(null, null, application.getPhoneId(), 0, 200),
+                LbsSaveHelp.poiListUrl(null, null, application.getPhoneId(), 0, 100),
                 null, new RequestCallBack<String>() {
                     @Override
                     public void onSuccess(ResponseInfo<String> responseInfo) {

@@ -37,7 +37,7 @@ import java.util.List;
 public class LocationService extends Service {
 
     private static int SCANSPAN_FIRST = 5 * 1000;// 定位未成功前的定位时间间隔：5秒
-    private static int SCANSPAN_OK = 1 * 60 * 1000;// 定位成功后的定位时间间隔：10分钟
+    private static int SCANSPAN_OK = 10 * 60 * 1000;// 定位成功后的定位时间间隔：10分钟
 
     private static boolean OPEN_GPS = false;// 设置是否打开GPS；使用GPS前提是用户硬件打开GPS；默认是不打开GPS的；如果打开，则会在状态栏一直显示GPS图标。
     private static boolean OPEN_WAKELOCK = false;// 是否开启手机电源锁（保持CPU运转）

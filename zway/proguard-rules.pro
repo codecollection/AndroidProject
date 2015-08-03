@@ -38,7 +38,9 @@
 -keep class com.zcj.android.web.** { *; }
 -keep class com.zandroid.zway.** { *; }
 
-# v4
+# v4 v7
+-keep class android.support.v4.** { *;}
+-dontwarn android.support.v4.**
 -keep class android.support.v7.** { *;}
 -dontwarn android.support.v7.**
 

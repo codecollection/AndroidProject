@@ -11,6 +11,8 @@ import com.zandroid.zway.MyConfig;
 import com.zcj.android.web.HttpCallback;
 import com.zcj.android.web.HttpUtilsHandler;
 
+import java.util.Map;
+
 public class LbsSaveHelp {
 
     private static final String LBS_AK = "566b7f727ea9fe87503114c0a479a724";// 服务端
@@ -20,7 +22,7 @@ public class LbsSaveHelp {
     private final static String POI_CREATE = "http://api.map.baidu.com/geodata/v3/poi/create";
     private final static String POI_LIST = "http://api.map.baidu.com/geodata/v3/poi/list";
 
-    private static final Gson GSON = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
+    public static final Gson GSON = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
 
     /**
      * 保存位置数据(POST)
@@ -68,7 +70,7 @@ public class LbsSaveHelp {
     }
 
     /**
-     * 获取位置信息（GET）
+     * 获取位置信息的URL（GET）
      *
      * @param column      column需要设置了is_index_field=1。
      *                    对于string，是两端匹配。
@@ -77,61 +79,33 @@ public class LbsSaveHelp {
      *                    例：如加入一个命名为color数据类型为string的column，在检索是可设置为“color=red”的形式来检索color字段为red的POI
      * @param title       可选
      * @param tags        可选
-     * @param geotable_id 数据库表的ID
      * @param page_index  默认为0，最大为9
      * @param page_size   默认为10，上限为200
-     * @param ak
      * @return
      */
-//    public static PoiListResult poiList(Map<String, Object> column, String title, String tags, final String geotable_id, Integer page_index, Integer page_size, String ak) {
-//        StringBuilder sb = new StringBuilder();
-//        sb.append(POI_LIST);
-//        sb.append("?ak=" + ak);
-//        sb.append("&geotable_id=" + geotable_id);
-//        if (page_index != null && page_index >= 0) {
-//            sb.append("&page_index=" + page_index);
-//        }
-//        if (page_size != null && page_size >= 0) {
-//            sb.append("&page_size=" + page_size);
-//        }
-//        if (tags != null) {
-//            sb.append("&tags=" + tags);
-//        }
-//        if (title != null) {
-//            sb.append("&title=" + title);
-//        }
-//        if (column != null && !column.isEmpty()) {
-//            for (Map.Entry<String, Object> entry : column.entrySet()) {
-//                sb.append("&" + entry.getKey() + "=" + String.valueOf(entry.getValue()));
-//            }
-//        }
-//        HttpUtilsHandler.getInstance().send(
-//            HttpRequest.HttpMethod.GET,
-//            sb.toString(),
-//            null, new RequestCallBack<String>() {
-//
-//                @Override
-//                public void onSuccess(ResponseInfo<String> responseInfo) {
-//                    try {
-//                        PoiListResult ss = GSON.fromJson(responseInfo.result, PoiListResult.class);
-//                        if (ss.getStatus() == 0) {
-//                            MyConfig.log("获取位置信息成功，表编号：" + geotable_id + "/返回的记录数：" + ss.getSize());
-//                            return ss;
-//                        } else {
-//                            MyConfig.log("网络连接成功，获取位置信息失败，LBS错误代码：" + ss.getStatus());
-//                        }
-//                    } catch (Exception e) {
-//                        MyConfig.log("网络连接成功，保存位置信息失败，返回字符串：" + responseInfo.result);
-//                    }
-//                }
-//
-//                @Override
-//                public void onFailure(HttpException error, String msg) {
-//                    MyConfig.log("网络错误");
-//                }
-//            }
-//        );
-//        return null;
-//    }
+    public static String poiListUrl(Map<String, Object> column, String title, String tags, Integer page_index, Integer page_size) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(POI_LIST);
+        sb.append("?ak=" + LBS_AK);
+        sb.append("&geotable_id=" + LBS_TABLE_ID);
+        if (page_index != null && page_index >= 0) {
+            sb.append("&page_index=" + page_index);
+        }
+        if (page_size != null && page_size >= 0) {
+            sb.append("&page_size=" + page_size);
+        }
+        if (tags != null) {
+            sb.append("&tags=" + tags);
+        }
+        if (title != null) {
+            sb.append("&title=" + title);
+        }
+        if (column != null && !column.isEmpty()) {
+            for (Map.Entry<String, Object> entry : column.entrySet()) {
+                sb.append("&" + entry.getKey() + "=" + String.valueOf(entry.getValue()));
+            }
+        }
+        return sb.toString();
+    }
 
 }

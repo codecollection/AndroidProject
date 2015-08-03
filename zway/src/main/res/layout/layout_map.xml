@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <com.baidu.mapapi.map.MapView
+        android:id="@+id/bmapsView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:clickable="true" />
+
+    <LinearLayout
+        android:layout_width="46.0dip"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:orientation="vertical"
+        android:paddingTop="20.0dip" >
+
+        <ImageButton
+            android:id="@+id/main_button_refresh"
+            android:layout_width="40.0dip"
+            android:layout_height="40.0dip"
+            android:layout_marginTop="4.0dip"
+            android:background="@drawable/main_button"
+            android:src="@drawable/main_button_refresh"
+            android:visibility="gone" />
+
+        <ImageButton
+            android:id="@+id/main_button_hiddenOrShow"
+            android:layout_width="40.0dip"
+            android:layout_height="40.0dip"
+            android:layout_marginTop="4.0dip"
+            android:background="@drawable/main_button"
+            android:src="@drawable/main_button_hidden"
+            android:contentDescription="1"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true" >
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"/>
+    </RelativeLayout>
+
+</RelativeLayout>

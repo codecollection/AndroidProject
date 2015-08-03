@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/route_map_viewpage_bg"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:paddingBottom="15.0dip"
+    android:paddingLeft="20.0dip"
+    android:paddingRight="20.0dip"
+    android:paddingTop="15.0dip" >
+
+    <TextView
+        android:id="@+id/fragment_location_userRealname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="地址"
+        android:textColor="#ff313233" />
+
+    <TextView
+        android:id="@+id/fragment_location_locationTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fragment_location_userRealname"
+        android:text="0000-00-00 00:00:00-xxxx"
+        android:textColor="#ff313233" />
+
+</RelativeLayout>

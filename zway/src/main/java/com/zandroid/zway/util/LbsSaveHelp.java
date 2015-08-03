@@ -44,7 +44,7 @@ public class LbsSaveHelp {
                     public void onSuccess(ResponseInfo<String> responseInfo) {
                         try {
                             PoiCreateResult ss = GSON.fromJson(responseInfo.result, PoiCreateResult.class);
-                            if (ss.getStatus() == 0) {
+                            if (ss.getStatus().equals(0)) {
 
                                 MyConfig.log("上传位置信息成功，表编号：" + LBS_TABLE_ID + "/记录编号：" + ss.getId());
 

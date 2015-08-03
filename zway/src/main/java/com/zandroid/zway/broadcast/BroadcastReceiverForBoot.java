@@ -14,6 +14,10 @@ public class BroadcastReceiverForBoot extends BroadcastReceiver {
 
         MyConfig.log("BroadcastReceiverForBoot--onReceive");
 
+        startAll(context);
+    }
+
+    private void startAll(Context context) {
         MyApplication application = (MyApplication) context.getApplicationContext();
         if (application != null) {
             application.startAll();

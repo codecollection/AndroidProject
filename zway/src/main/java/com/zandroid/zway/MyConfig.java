@@ -5,6 +5,6 @@ import android.util.Log;
 public class MyConfig {
 
 	public static void log(String string) {
-		Log.v("zgps", string);
+		Log.v("zway", string);
 	}
 }

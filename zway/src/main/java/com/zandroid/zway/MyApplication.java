@@ -15,12 +15,8 @@ import java.io.File;
 
 public class MyApplication extends Application {
 
-    // XML配置文件信息
-    public static final String XML_NAME = "config";// 配置文件名
-
     private String phoneId;// 手机编号
     private DbUtils dbUtils;// 数据库操作对象
-    private Intent locationService;// 定位服务
 
     // 定位图标
     private BitmapDescriptor bitmap_begin;
@@ -41,50 +37,38 @@ public class MyApplication extends Application {
     public void onCreate() {
         MyConfig.log("MyApplication--onCreate");
 
-        // 如果是主进程
-        if ("com.zandroid.zway".equals(UtilAndroid.getProcessName(getApplicationContext()))) {
+        SDKInitializer.initialize(getApplicationContext());
 
-            SDKInitializer.initialize(getApplicationContext());
-            setBitmap_begin(BitmapDescriptorFactory.fromResource(R.drawable.icon_loc_4));
-            setBitmap_check(BitmapDescriptorFactory.fromResource(R.drawable.icon_loc_3));
-            setBitmap_end(BitmapDescriptorFactory.fromResource(R.drawable.icon_loc_5));
-            setBitmap_uncheck(BitmapDescriptorFactory.fromResource(R.drawable.icon_loc_1));
+        setBitmap_begin(BitmapDescriptorFactory.fromResource(R.drawable.icon_loc_4));
+        setBitmap_check(BitmapDescriptorFactory.fromResource(R.drawable.icon_loc_3));
+        setBitmap_end(BitmapDescriptorFactory.fromResource(R.drawable.icon_loc_5));
+        setBitmap_uncheck(BitmapDescriptorFactory.fromResource(R.drawable.icon_loc_1));
 
-            if (UtilAppFile.sdcardExist()) {
-                FILESAVEPATH = UtilAppFile.getSdcardPath();
-            } else {
-                FILESAVEPATH = UtilAppFile.getFilesDir(this);
-            }
-            FILESAVEPATH_SNAPSHOT = FILESAVEPATH + "Snapshot/";
-            File file = new File(FILESAVEPATH_SNAPSHOT);
-            if (!file.exists()) {
-                file.mkdirs();
-            }
+        if (UtilAppFile.sdcardExist()) {
+            FILESAVEPATH = UtilAppFile.getSdcardPath();
+        } else {
+            FILESAVEPATH = UtilAppFile.getFilesDir(this);
+        }
+        FILESAVEPATH_SNAPSHOT = FILESAVEPATH + "Snapshot/";
+        File file = new File(FILESAVEPATH_SNAPSHOT);
+        if (!file.exists()) {
+            file.mkdirs();
+        }
 
-            try {
-                setPhoneId(UtilAndroid.getUdid(this, "zway", "UUID"));
-                setDbUtils(DbUtils.create(this));
-                locationService = new Intent(this, LocationService.class);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        try {
+            setPhoneId(UtilAndroid.getUdid(this, "zway", "UUID"));
+            setDbUtils(DbUtils.create(this));
+            startAll();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         super.onCreate();
     }
 
     public void startAll() {
-        if (locationService != null) {
-            startService(locationService);
-            MyConfig.log("--startService");
-        }
-    }
-
-    public void stopAll() {
-        if (locationService != null) {
-            stopService(locationService);
-            MyConfig.log("--stopService");
-        }
+        startService(new Intent(this, LocationService.class));
+        MyConfig.log("--startService");
     }
 
     public String getPhoneId() {

@@ -1,8 +1,5 @@
 package com.zcj.android.web;
 
-import java.io.File;
-import java.util.Date;
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.widget.Toast;
@@ -16,6 +13,9 @@ import com.lidroid.xutils.http.client.HttpRequest;
 import com.zcj.util.UtilDate;
 import com.zcj.util.json.json.JSONObject;
 
+import java.io.File;
+import java.util.Date;
+
 public class HttpUtilsHandler {
 
 	private static HttpUtils http;
@@ -24,7 +24,7 @@ public class HttpUtilsHandler {
 
 	}
 
-	private static synchronized HttpUtils getInstance() {
+	public static synchronized HttpUtils getInstance() {
 		if (http == null) {
 			http = new HttpUtils();
 		}

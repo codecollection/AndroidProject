@@ -1,0 +1,67 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion "23.0.0 rc3"
+
+    defaultConfig {
+        applicationId "com.zandroid.zway"
+        minSdkVersion 8
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+    }
+
+    signingConfigs {
+        debug {
+            storeFile file("document/zway.jks")
+            storePassword "zerozcj19881105"
+            keyAlias "zway"
+            keyPassword "zerozcj19881105"
+        }
+        release {
+            storeFile file("document/zway.jks")
+            storePassword "zerozcj19881105"
+            keyAlias "zway"
+            keyPassword "zerozcj19881105"
+        }
+    }
+
+    buildTypes {
+        debug {
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+            versionNameSuffix "-debug"
+            minifyEnabled false
+            zipAlignEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.debug
+        }
+        release {
+            buildConfigField "boolean", "LOG_DEBUG", "false"    // 不显示Log
+            minifyEnabled true  // 混淆
+            zipAlignEnabled true    // 混淆后的zip优化，默认为true，可不写。当不显示配置为true时，不会生成unaligned.apk
+            shrinkResources true    // 移除无用的resource文件
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            // 混淆配置文件
+            signingConfig signingConfigs.release    // 证书
+        }
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:22.2.1'
+    compile project(':zutil')
+    compile project(':zlibbmap')
+    compile project(':zlibumeng')
+}

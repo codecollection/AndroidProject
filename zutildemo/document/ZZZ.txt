@@ -7,10 +7,6 @@ adb工具
 	adb install d:\sl.apk
 	adb uninstall com.sky.mine
 
-查看所有软件的内存占用情况
-	adb shell(需要打开模拟器)
-	ps
-	
 查看layout文件的效率：layoutopt
 查看界面层级结构：sdk\tools\hierarchyviewer.bat
 设计.9.png图片：draw9patch.bat
@@ -32,16 +28,6 @@ Game引擎
 	
 广告
 	http://munion.baidu.com
-	
-Activities : 界面
-	Fragments : 片段(3.0+)
-	Loaders : 加载器(3.0+)
-Services : 服务;数据处理
-Content Providers : 内容提供;提供多个程序间的数据存取
-Broadcast Receivers : 广播接收;负责对外部事件做出响应
-Intent : 意图;四个组件相互关联
-Binder : 捆绑;Linux的进程通信机制
-	
 
 assets  资源目录。读取此目录文件必须自定文件的路径，如：file:///android_asset/test.3gp。
 res/anim/		存放定义动画的XML文件

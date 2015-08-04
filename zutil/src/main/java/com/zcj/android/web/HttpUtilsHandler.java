@@ -57,11 +57,6 @@ public class HttpUtilsHandler {
 		send(null, url, params, callback, false);
 	}
 
-	// public static void send(final String url, final RequestParams params,
-	// final HttpCallback callback, final ProgressDialog loadingDialog) {
-	// send(null, url, params, callback, false, loadingDialog);
-	// }
-
 	/**
 	 * 发起网络请求（请求失败时重新发起一次请求）
 	 * 
@@ -80,13 +75,6 @@ public class HttpUtilsHandler {
 			final boolean alertErrorString) {
 		sendFunction(context, url, params, callback, alertErrorString, true, null);
 	}
-
-	// public static void send(final Context context, String url, RequestParams
-	// params, final HttpCallback callback, final boolean alertErrorString,
-	// final ProgressDialog loadingDialog) {
-	// sendFunction(context, url, params, callback, alertErrorString, true,
-	// loadingDialog);
-	// }
 
 	/**
 	 * 发起网络请求

@@ -73,8 +73,10 @@ java.lang.Object
 			|_android.widget.EditText	-------------------------------1.2、文本输入框
 			|_android.widget.Button		-------------------------------1.3、按钮
 				|_android.widget.CompoundButton 
-						|_android.widget.RadioButton	---------------1.4.1、单选框（需要放在RadioGroup里）
+						|_android.widget.RadioButton	---------------1.4、单选框（需要放在RadioGroup里）
 						|_android.widget.CheckBox		---------------1.5、复选框
+						|_android.widget.ToggleButton	---------------开关
+						|_android.widget.Switch			---------------开关
 		|_android.widget.ImageView			---------------------------1.6、图片<ImageView android:src="@drawable/logo"/>
 			|_android.widget.ImageButton		-----------------------1.7、图片按钮<ImageButton android:src="@drawable/logo"/>
 		|_android.view.ViewGroup 
@@ -83,7 +85,7 @@ java.lang.Object
 				|_android.widget.TableRow		-------2.2.2、表格布局管理器中的行管理器(需要放在TableLayout里)
 				|_android.widget.RadioGroup		-----------------------1.4.2、单选框容器	
 			|_android.widget.FrameLayout	-----------2.3、框架布局管理器(叠加在同一位置)
-				|_android.widget.TimePicker	---------------------------1.8、时间控件
+				|_android.widget.TimePicker	---------------------------1.8、时间控件(建议使用DialogFragment承载每个时间或日期选择器,详见http://wiki.eoeandroid.com/Pickers)
 				|_android.widget.DatePicker	---------------------------1.9、日期控件
 				|_android.widget.ScrollView	---------------------------1.10、滚动控件
 				|_android.widget.HorizontalScrollView	---------------1.10、横向滚动控件(调用fling()偏移)

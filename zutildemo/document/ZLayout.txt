@@ -130,40 +130,41 @@ TextView
 	android:freezesText 是否冻结文本 
 	android:gravity 指明文本的重心位置 
 	android:height 高度值 
-	android:hint 指示内容 
+   android:hint 指示内容
+	android:focusable 是否可聚焦的
 	android:imeActionId  
-	android:imeActionLabel   
-	android:imeOptions 输入法选项 
+   android:imeActionLabel 输入法按钮的文本（在输入提取模式android:imeOptions=flagNoExtractUi的横屏下才有效，右侧会有一个按钮）
+   android:imeOptions 输入法按钮的类型(下一步、搜索、提交等等),需要配合android:singleLine="true"使用（如：actionSend、actionSearch、actionNext、actionNone）
 	android:includeFontPadding   
 	android:inputMethod 指定输入法 
-	android:inputType  输入类型，取值为下列之一：
+   android:inputType  输入类型，取值为下列之一：
 		none  
 		text普通文本  
-		textCapCharacters大写字符 
-		textCapWords单词首字母大写 
-		textCapSentences句子首字母大写 
-		textAutoCorret自动更正 
-		textAutoComplete自动完成 
-		textMultiLine多行内容 
-		textUri，Uri  
-		textEmailAddress电子邮件地址 
-		textEmailSubject电子邮件主题 
-		textShortMessage短消息 
-		textLongMessage长消息 
-		textPersonName个人姓名 
-		textPostalAddress邮政地址 
-		textPassword密码  
-		textVIsiblePassword可见的密码 
-		textWebEditText网页格式 
-		textFilter过滤字符串 
-		textPhonetic语言发音 
-		number数字  
+		textCapCharacters大写字符
+		textCapWords单词首字母大写
+		textCapSentences句子首字母大写
+		textAutoCorret自动更正
+		textAutoComplete自动完成
+		textMultiLine多行内容
+		textUri，Uri
+		textEmailAddress电子邮件地址
+		textEmailSubject电子邮件主题
+		textShortMessage短消息
+		textLongMessage长消息
+		textPersonName个人姓名
+		textPostalAddress邮政地址
+		textPassword密码
+		textVIsiblePassword可见的密码
+		textWebEditText网页格式
+		textFilter过滤字符串
+		textPhonetic语言发音
+		number数字
 		numberSigned有符号数字
-		numberDecimal十进制数字 
-		phone电话号码 
-		datetime日期时间 
-		date日期 
-		time时间 
+		numberDecimal十进制数字
+		phone电话号码
+		datetime日期时间
+		date日期
+		time时间
 	android:lineSpacingExtra  
 	android:lineSpacingMultiplier   
 	android:lines 设置文本行数 

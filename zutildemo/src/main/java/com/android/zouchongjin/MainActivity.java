@@ -89,13 +89,13 @@ public class MainActivity extends Activity {
 	
 	@OnClick(R.id.button12)
 	private void button12(View v) {
-		Intent intent = new Intent(MainActivity.this, com.android.zouchongjin.webviewshell.MainActivity.class);
+		Intent intent = new Intent(this, com.android.zouchongjin.webviewshell.MainActivity.class);
 		startActivity(intent);
 	}
 	
 	@OnClick(R.id.button_main_loader)
 	private void button_main_loader(View v) {
-		Intent intent = new Intent(MainActivity.this, com.android.zouchongjin.activity.MyLoader.class);
+		Intent intent = new Intent(this, com.android.zouchongjin.activity.MyLoader.class);
 		startActivity(intent);
 	}
 	

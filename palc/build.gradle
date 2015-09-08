@@ -8,8 +8,8 @@ android {
         applicationId "com.thanone.palc"// 替换AndroidManifest.xml中的package，可以不配置
         minSdkVersion 8
         targetSdkVersion 22
-        versionCode 10
-        versionName "1.1.0"
+        versionCode 201
+        versionName "2.0.1"
     }
 
 //    productFlavors {
@@ -42,6 +42,7 @@ android {
     buildTypes {
         debug {
             buildConfigField "boolean", "LOG_DEBUG", "true"
+            buildConfigField "String", "URLBASE", "\"http://192.168.1.119:8080/palccms\""
             versionNameSuffix "-debug"
             minifyEnabled false
             zipAlignEnabled false
@@ -49,7 +50,8 @@ android {
             signingConfig signingConfigs.debug
         }
         release {
-            buildConfigField "boolean", "LOG_DEBUG", "false"    // 不显示Log
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            buildConfigField "String", "URLBASE", "\"http://60.190.82.250:4112/palccms\""
             minifyEnabled false  // 混淆
             zipAlignEnabled true    // 混淆后的zip优化，默认为true，可不写。当不显示配置为true时，不会生成unaligned.apk
             shrinkResources true    // 移除无用的resource文件

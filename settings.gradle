@@ -1,1 +1,1 @@
-include ':zutil', ':zlibumeng', ':zlibbmap', ':palc'
+include ':zutil', ':zlibumeng', ':zlibbmap', ':palc', ':appbuy', ':zutildemo'

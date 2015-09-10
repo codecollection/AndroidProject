@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EDECF1"
+    android:orientation="vertical">
+
+    <fragment
+        android:id="@+id/main_fragment_1"
+        android:name="com.thanone.palc.activity.IndexActivity"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        tools:layout="@layout/layout_index" />
+
+    <fragment
+        android:id="@+id/main_fragment_2"
+        android:name="com.thanone.palc.activity.ClueActivity"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        tools:layout="@layout/layout_clue" />
+
+    <fragment
+        android:id="@+id/main_fragment_3"
+        android:name="com.thanone.palc.activity.HouseActivity"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        tools:layout="@layout/layout_house" />
+
+    <fragment
+        android:id="@+id/main_fragment_4"
+        android:name="com.thanone.palc.activity.MeActivity"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        tools:layout="@layout/layout_me" />
+
+    <RadioGroup
+        android:id="@+id/main_radiogroup"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/main_footer_1"
+            style="@style/main_footbar_radio"
+            android:layout_height="43dp"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="3dp"
+            android:checked="false"
+            android:drawableTop="@drawable/d_widget_bar_index" />
+
+        <RadioButton
+            android:id="@+id/main_footer_2"
+            style="@style/main_footbar_radio"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="3dp"
+            android:checked="false"
+            android:drawableTop="@drawable/d_widget_bar_clue" />
+
+        <RadioButton
+            android:id="@+id/main_footer_3"
+            style="@style/main_footbar_radio"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="3dp"
+            android:checked="false"
+            android:drawableTop="@drawable/d_widget_bar_house" />
+
+        <RadioButton
+            android:id="@+id/main_footer_4"
+            style="@style/main_footbar_radio"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="3dp"
+            android:checked="false"
+            android:drawableTop="@drawable/d_widget_bar_me" />
+    </RadioGroup>
+</LinearLayout>

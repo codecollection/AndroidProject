@@ -3,9 +3,6 @@
 	ANDROID_HOME=D:\JAVA\Software\adt-bundle-windows-x86-20130219\sdk
 	Path=..;%ANDROID_HOME%\platform-tools;%ANDROID_HOME%\tools
 
-adb工具
-	adb install d:\sl.apk
-	adb uninstall com.sky.mine
 
 查看layout文件的效率：layoutopt
 查看界面层级结构：sdk\tools\hierarchyviewer.bat
@@ -116,6 +113,11 @@ ArrayAdapter<String> aAdapter = new ArrayAdapter<String>(this, android.R.layout.
 ArrayAdapter<String> aAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, {"a","b","c","d","e","f","a","b","c","d","e","f"});
 			
 sp:字体大小;dp:宽度高度;
+
+切图
+    xxhdpi  1080*1920(1080p)                3px=1dp
+	xhdpi	720*1280(720p)  	状态栏50px	2px=1dp
+	hdpi	480*800(480p)  		状态栏30px	3px=2dp
 
 TextView：
 	tv.setText(Html.fromHtml("..."));

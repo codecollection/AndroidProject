@@ -6,6 +6,8 @@ import com.zcj.android.web.HttpUtilsHandler;
 
 public class HttpUrlUtil {
 
+    public static String URL_CLICKCATALOG = MyConfig.URL_BASE + "/app/clickcatalog.ajax";
+
     public static String URL_SERVICE_OK = MyConfig.URL_BASE + "/app/serviceok.ajax";
 
     public static String URL_SAVELOCATION = MyConfig.URL_BASE + "/app/saveLocation.ajax";
@@ -19,6 +21,10 @@ public class HttpUrlUtil {
     public static String URL_BINDUSERANDPHONE = MyConfig.URL_BASE + "/app/bind.ajax";
 
     public static String URL_INDEX = MyConfig.URL_BASE + "/index.jsp?v=1";// 首页地址
+
+    public static RequestParams url_clickCatalog(Long memberId, Integer type) {
+        return HttpUtilsHandler.initParams(new String[]{"memberId", "type"}, new Object[]{memberId, type});
+    }
 
     public static RequestParams url_bindUserAndPhone(String deviceID, String userID) {
         return HttpUtilsHandler.initParams(new String[]{"deviceID", "userID"}, new Object[]{deviceID, userID});

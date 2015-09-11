@@ -1,8 +1,5 @@
 package com.thanone.palc;
 
-import java.io.File;
-import java.util.List;
-
 import android.app.Application;
 import android.content.Intent;
 
@@ -25,6 +22,9 @@ import com.zcj.android.web.HttpCallback;
 import com.zcj.android.web.HttpUtilsHandler;
 import com.zcj.android.web.ServiceResult;
 
+import java.io.File;
+import java.util.List;
+
 public class MyApplication extends Application {
 
 	// XML配置文件信息
@@ -32,6 +32,8 @@ public class MyApplication extends Application {
 	private static final String XML_KEY_UUID = "UUID";
 	public static final String XML_KEY_USERNAME = "u";
 	public static final String XML_KEY_PASSWORD = "p";
+
+	private Long loginUserId;
 
 	private String phoneId;// 手机编号
 	private DbUtils dbUtils;// 数据库操作对象
@@ -537,4 +539,7 @@ public class MyApplication extends Application {
 		this.dbUtils = dbUtils;
 	}
 
+	public Long getLoginUserId() {
+		return loginUserId;
+	}
 }

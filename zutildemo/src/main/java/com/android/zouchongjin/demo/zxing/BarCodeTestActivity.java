@@ -59,7 +59,6 @@ public class BarCodeTestActivity extends Activity {
 					}
 					
 				} catch (WriterException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

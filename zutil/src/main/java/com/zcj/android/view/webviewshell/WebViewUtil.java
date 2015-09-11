@@ -1,9 +1,5 @@
 package com.zcj.android.view.webviewshell;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Map;
-
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -25,239 +21,269 @@ import android.widget.EditText;
 
 import com.zcj.util.UtilFile;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Map;
+
 /**
  * WebView壳
- * 
+ *
  * @author zouchongjin@sina.com
  * @data 2015年6月10日
  */
 public class WebViewUtil {
 
-	public static final String JS_NAME = "Android";
+    public static final String JS_NAME = "Android";
 
-	private Activity activity;
-	private WebView myWebView;
-	private Map<String, String> staticFileMap;
+    private Activity activity;
+    private WebView myWebView;
+    private Map<String, String> staticFileMap;
 
-	public WebViewUtil(Activity activity, WebView myWebView, Map<String, String> staticFileMap) {
-		super();
-		this.activity = activity;
-		this.myWebView = myWebView;
-		this.staticFileMap = staticFileMap;
-	}
+    public WebViewUtil(Activity activity, WebView myWebView, Map<String, String> staticFileMap) {
+        super();
+        this.activity = activity;
+        this.myWebView = myWebView;
+        this.staticFileMap = staticFileMap;
+    }
 
-	public WebViewUtil(Activity activity, WebView myWebView) {
-		super();
-		this.activity = activity;
-		this.myWebView = myWebView;
-	}
+    public WebViewUtil(Activity activity, WebView myWebView) {
+        super();
+        this.activity = activity;
+        this.myWebView = myWebView;
+    }
 
-	/** 初始化 */
-	@SuppressLint("SetJavaScriptEnabled")
-	public void init(Object myJavascriptInterface, String indexUrl) {
-		if (myWebView != null) {
-			// 支持JS
-			myWebView.getSettings().setJavaScriptEnabled(true);
+    /**
+     * 初始化
+     */
+    @SuppressLint("SetJavaScriptEnabled")
+    public void init(Object myJavascriptInterface, String indexUrl) {
+        if (myWebView != null) {
+            // 支持JS
+            myWebView.getSettings().setJavaScriptEnabled(true);
 
-			// 允许访问文件数据
-			myWebView.getSettings().setAllowFileAccess(true);
+            // 允许访问文件数据
+            myWebView.getSettings().setAllowFileAccess(true);
 
-			// 设置支持缩放
-			// myWebView.getSettings().setBuiltInZoomControls(true);
+            // 设置支持缩放
+            // myWebView.getSettings().setBuiltInZoomControls(true);
 
-			// 处理各种通知、请求事件(支持内部处理URL)
-			myWebView.setWebViewClient(new MyWebViewClient());
+            // 处理各种通知、请求事件(支持内部处理URL)
+            myWebView.setWebViewClient(new MyWebViewClient());
 
-			// 处理JS的对话框，网站图标，网站title，加载进度等
-			myWebView.setWebChromeClient(new MyWebChromeClient());
+            // 处理JS的对话框，网站图标，网站title，加载进度等
+            myWebView.setWebChromeClient(new MyWebChromeClient());
 
-			// 支持JS访问Android
-			if (myJavascriptInterface != null) {
-				myWebView.addJavascriptInterface(myJavascriptInterface, JS_NAME);
-			}
+            // 支持JS访问Android
+            if (myJavascriptInterface != null) {
+                myWebView.addJavascriptInterface(myJavascriptInterface, JS_NAME);
+            }
 
-			// 调用外链接
-			myWebView.loadUrl(indexUrl);
-		}
-	}
+            // 调用外链接
+            myWebView.loadUrl(indexUrl);
+        }
+    }
 
-	/** 处理手机返回按钮（返回按钮调用JS的方法） */
-	@Deprecated
-	public Boolean onKeyDown(int keyCode, KeyEvent event, final OnQuitListener listener, final String jsFunction) {
-		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			if (myWebView != null && myWebView.canGoBack()) {
-				myWebView.post(new Runnable() {
-					@Override
-					public void run() {
-						myWebView.loadUrl("javascript:" + jsFunction + "()");
-					}
-				});
-				return true;
-			} else {
-				// 弹出框
-				AlertDialog ad = new AlertDialog.Builder(activity).setMessage("确定退出吗")
-						.setPositiveButton("确定", new OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog, int which) {
-								dialog.cancel();
-								listener.webViewQuit();
-							}
-						}).setNegativeButton("返回", new OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog, int which) {
-								// 不做任何操作
-							}
-						}).create();
-				ad.show();
-				return false;
-			}
-		}
-		return null;
-	}
+    /**
+     * 处理手机返回按钮（返回按钮调用JS的方法）
+     */
+    @Deprecated
+    public Boolean onKeyDown(int keyCode, KeyEvent event, final OnQuitListener listener, final String jsFunction) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (myWebView != null && myWebView.canGoBack()) {
+                myWebView.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        myWebView.loadUrl("javascript:" + jsFunction + "()");
+                    }
+                });
+                return true;
+            } else {
+                // 弹出框
+                AlertDialog ad = new AlertDialog.Builder(activity).setMessage("确定退出吗")
+                        .setPositiveButton("确定", new OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                                listener.webViewQuit();
+                            }
+                        }).setNegativeButton("返回", new OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // 不做任何操作
+                            }
+                        }).create();
+                ad.show();
+                return false;
+            }
+        }
+        return null;
+    }
 
-	/** 处理手机返回按钮（返回按钮调用webView的goBack方法） */
-	public Boolean onKeyDown(int keyCode, KeyEvent event, final OnQuitListener listener) {
-		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			if (myWebView != null && myWebView.canGoBack()) {
-				myWebView.goBack();
-				return true;
-			} else {
-				// 弹出框
-				AlertDialog ad = new AlertDialog.Builder(activity).setMessage("确定退出吗")
-						.setPositiveButton("确定", new OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog, int which) {
-								dialog.cancel();
-								listener.webViewQuit();
-							}
-						}).setNegativeButton("返回", new OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog, int which) {
-								// 不做任何操作
-							}
-						}).create();
-				ad.show();
-				return false;
-			}
-		}
-		return null;
-	}
+    /**
+     * 处理手机返回按钮
+     * <p>如果WebView可以返回，则调用webView的goBack方法</p>
+     * <p>如果WebView不可返回，则根据showDialog属性判断是否弹出窗口提示确定退出，最后调用listener里相应的方法</p>
+     * <p>如果不是点击返回按钮，则返回NULL，需要用户手动再调用super.onKeyDown(keyCode, event)</p>
+     */
+    public Boolean onKeyDown(int keyCode, KeyEvent event, boolean showDialog, final OnQuitListener listener) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (myWebView != null && myWebView.canGoBack()) {
+                myWebView.goBack();
+                return true;
+            } else {
+                if (showDialog) {
+                    AlertDialog ad = new AlertDialog.Builder(activity).setMessage("确定退出吗")
+                            .setPositiveButton("确定", new OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                    if (listener != null) {
+                                        listener.webViewQuit();
+                                    }
+                                }
+                            }).setNegativeButton("返回", new OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // 不做任何操作
+                                }
+                            }).create();
+                    ad.show();
+                } else {
+                    if (listener != null) {
+                        listener.webViewQuit();
+                    }
+                }
+                return false;
+            }
+        }
+        return null;
+    }
 
-	private class MyWebViewClient extends WebViewClient {
-		@Override
-		public boolean shouldOverrideUrlLoading(WebView view, String url) {
-			view.loadUrl(url);
-			return true;
-		}
+    /**
+     * 处理手机返回按钮
+     * <p>如果WebView可以返回，则调用webView的goBack方法</p>
+     * <p>如果WebView不可返回，则弹出窗口提示是否确定退出，点击退出后调用listener里相应的方法</p>
+     * <p>如果不是点击返回按钮，则返回NULL，需要用户手动再调用super.onKeyDown(keyCode, event)</p>
+     */
+    public Boolean onKeyDown(int keyCode, KeyEvent event, final OnQuitListener listener) {
+        return onKeyDown(keyCode, event, true, listener);
+    }
 
-		@TargetApi(Build.VERSION_CODES.HONEYCOMB)
-		@Override
-		public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
-			WebResourceResponse response = null;
-			if (staticFileMap != null && staticFileMap.size() > 0) {
-				for (Map.Entry<String, String> entry : staticFileMap.entrySet()) {
-					if (url.contains(entry.getKey())) {
-						try {
-							InputStream localCopy = activity.getAssets().open(entry.getValue());
-							Log.v("WebView", url + "加载本地资源" + entry.getValue());
-							response = new WebResourceResponse(UtilFile.getMimeType(entry.getKey()), "UTF-8", localCopy);
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-					}
-				}
-			}
-			return response;
-		}
+    private class MyWebViewClient extends WebViewClient {
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            view.loadUrl(url);
+            return true;
+        }
 
-	}
+        @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+        @Override
+        public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
+            WebResourceResponse response = null;
+            if (staticFileMap != null && staticFileMap.size() > 0) {
+                for (Map.Entry<String, String> entry : staticFileMap.entrySet()) {
+                    if (url.contains(entry.getKey())) {
+                        try {
+                            InputStream localCopy = activity.getAssets().open(entry.getValue());
+                            Log.v("WebView", url + "加载本地资源" + entry.getValue());
+                            response = new WebResourceResponse(UtilFile.getMimeType(entry.getKey()), "UTF-8", localCopy);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+            return response;
+        }
 
-	private class MyWebChromeClient extends WebChromeClient {
+    }
 
-		@Override
-		public boolean onJsAlert(WebView view, String url, String message, JsResult result) {
-			final AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-			builder.setTitle("提示").setMessage(message).setPositiveButton("确定", null);
-			builder.setOnKeyListener(new OnKeyListener() {
-				@Override
-				public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-					return true;
-				}
-			});
-			builder.setCancelable(false);
-			AlertDialog dialog = builder.create();
-			dialog.show();
-			result.confirm();
-			return true;
-		}
+    private class MyWebChromeClient extends WebChromeClient {
 
-		@Override
-		public boolean onJsConfirm(WebView view, String url, String message, final JsResult result) {
-			final AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-			builder.setTitle("提示").setMessage(message).setPositiveButton("确定", new OnClickListener() {
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					result.confirm();
-				}
-			}).setNeutralButton("取消", new OnClickListener() {
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					result.cancel();
-				}
-			});
-			builder.setOnCancelListener(new OnCancelListener() {
-				@Override
-				public void onCancel(DialogInterface dialog) {
-					result.cancel();
-				}
-			});
+        @Override
+        public boolean onJsAlert(WebView view, String url, String message, JsResult result) {
+            final AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+            builder.setTitle("提示").setMessage(message).setPositiveButton("确定", null);
+            builder.setOnKeyListener(new OnKeyListener() {
+                @Override
+                public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                    return true;
+                }
+            });
+            builder.setCancelable(false);
+            AlertDialog dialog = builder.create();
+            dialog.show();
+            result.confirm();
+            return true;
+        }
 
-			builder.setOnKeyListener(new OnKeyListener() {
-				@Override
-				public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-					return true;
-				}
-			});
-			builder.setCancelable(false);
-			AlertDialog dialog = builder.create();
-			dialog.show();
-			return true;
-		}
+        @Override
+        public boolean onJsConfirm(WebView view, String url, String message, final JsResult result) {
+            final AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+            builder.setTitle("提示").setMessage(message).setPositiveButton("确定", new OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    result.confirm();
+                }
+            }).setNeutralButton("取消", new OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    result.cancel();
+                }
+            });
+            builder.setOnCancelListener(new OnCancelListener() {
+                @Override
+                public void onCancel(DialogInterface dialog) {
+                    result.cancel();
+                }
+            });
 
-		@Override
-		public boolean onJsPrompt(WebView view, String url, String message, String defaultValue, final JsPromptResult result) {
-			final AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-			builder.setTitle("提示").setMessage(message);
-			final EditText et = new EditText(view.getContext());
-			et.setSingleLine();
-			et.setText(defaultValue);
-			builder.setView(et);
-			builder.setPositiveButton("确定", new OnClickListener() {
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					result.confirm(et.getText().toString());
-				}
-			}).setNeutralButton("取消", new OnClickListener() {
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					result.cancel();
-				}
-			});
+            builder.setOnKeyListener(new OnKeyListener() {
+                @Override
+                public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                    return true;
+                }
+            });
+            builder.setCancelable(false);
+            AlertDialog dialog = builder.create();
+            dialog.show();
+            return true;
+        }
 
-			// 屏蔽keycode等于84之类的按键，避免按键后导致对话框消息而页面无法再弹出对话框的问题
-			builder.setOnKeyListener(new OnKeyListener() {
-				@Override
-				public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-					return true;
-				}
-			});
+        @Override
+        public boolean onJsPrompt(WebView view, String url, String message, String defaultValue, final JsPromptResult result) {
+            final AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+            builder.setTitle("提示").setMessage(message);
+            final EditText et = new EditText(view.getContext());
+            et.setSingleLine();
+            et.setText(defaultValue);
+            builder.setView(et);
+            builder.setPositiveButton("确定", new OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    result.confirm(et.getText().toString());
+                }
+            }).setNeutralButton("取消", new OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    result.cancel();
+                }
+            });
 
-			// 禁止响应按back键的事件
-			builder.setCancelable(false);
-			AlertDialog dialog = builder.create();
-			dialog.show();
-			return true;
-		}
-	}
+            // 屏蔽keycode等于84之类的按键，避免按键后导致对话框消息而页面无法再弹出对话框的问题
+            builder.setOnKeyListener(new OnKeyListener() {
+                @Override
+                public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                    return true;
+                }
+            });
+
+            // 禁止响应按back键的事件
+            builder.setCancelable(false);
+            AlertDialog dialog = builder.create();
+            dialog.show();
+            return true;
+        }
+    }
 
 }

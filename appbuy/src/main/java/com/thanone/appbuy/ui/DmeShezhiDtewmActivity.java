@@ -46,7 +46,6 @@ public class DmeShezhiDtewmActivity extends BaseActivity {
 		MobclickAgent.onPause(this);
 	}
 
-	// TODO
 //	@OnClick(R.id.dmeshezhidtewm_weixin)
 //	private void dmeshezhidtewm_weixin(View v) {
 //		UiUtil.openEwmOper(this, AppContext.FILESAVEPATH_IMG, UtilImage.getBitmapByResourceId(this, R.drawable.ewm_weixin));

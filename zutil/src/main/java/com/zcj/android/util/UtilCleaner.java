@@ -1,7 +1,5 @@
 package com.zcj.android.util;
 
-import java.io.File;
-
 import android.content.Context;
 import android.os.Environment;
 import android.os.Handler;
@@ -9,6 +7,8 @@ import android.os.Message;
 import android.widget.Toast;
 
 import com.zcj.util.UtilFile;
+
+import java.io.File;
 
 /** 数据清除管理器 */
 public class UtilCleaner {
@@ -88,7 +88,7 @@ public class UtilCleaner {
 
 	/** 清除本应用的所有WebView缓存 */
 	private static void cleanWebViewCache(Context context) {
-		// TODO CacheManager 类在4.4以上版本不存在
+		// CacheManager 类在4.4以上版本不存在
 //		File file = CacheManager.getCacheFileBaseDir();
 //		if (file != null && file.exists() && file.isDirectory()) {
 //			for (File item : file.listFiles()) {

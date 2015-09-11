@@ -3,7 +3,9 @@ package com.thanone.palc.util;
 import android.app.Activity;
 import android.content.Intent;
 
+import com.thanone.palc.activity.MainsActivity;
 import com.thanone.palc.activity.SjhyActivity;
+import com.thanone.palc.activity.UserinfoFragment;
 import com.thanone.palc.activity.WebViewActivity;
 import com.zcj.android.util.UtilDialog;
 
@@ -13,8 +15,14 @@ public class UiUtil {
         UtilDialog.builderAlertDialog(from, "提示", value);
     }
 
-    public static void toLogin(Activity from) {
-        // TODO 转到登录页面
+    public static void toMains(Activity from) {
+        Intent i = new Intent(from, MainsActivity.class);
+        from.startActivity(i);
+    }
+
+    public static void toUserinfo(Activity from) {
+        Intent i = new Intent(from, UserinfoFragment.class);
+        from.startActivity(i);
     }
 
     public static void toSjhy(Activity from) {

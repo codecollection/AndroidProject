@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/main_fragment_1"
-        android:name="com.thanone.palc.activity.IndexActivity"
+        android:name="com.thanone.palc.activity.IndexFragment"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -16,7 +16,7 @@
 
     <fragment
         android:id="@+id/main_fragment_2"
-        android:name="com.thanone.palc.activity.ClueActivity"
+        android:name="com.thanone.palc.activity.ClueFragment"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -24,7 +24,7 @@
 
     <fragment
         android:id="@+id/main_fragment_3"
-        android:name="com.thanone.palc.activity.HouseActivity"
+        android:name="com.thanone.palc.activity.HouseFragment"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -32,11 +32,11 @@
 
     <fragment
         android:id="@+id/main_fragment_4"
-        android:name="com.thanone.palc.activity.MeActivity"
+        android:name="com.thanone.palc.activity.LoginFragment"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        tools:layout="@layout/layout_me" />
+        tools:layout="@layout/layout_login" />
 
     <RadioGroup
         android:id="@+id/main_radiogroup"
@@ -77,6 +77,6 @@
             android:layout_marginBottom="2dp"
             android:layout_marginTop="3dp"
             android:checked="false"
-            android:drawableTop="@drawable/d_widget_bar_me" />
+            android:drawableTop="@drawable/d_widget_bar_login" />
     </RadioGroup>
 </LinearLayout>

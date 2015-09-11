@@ -46,15 +46,13 @@
             android:name="com.thanone.palc.activity.SjhyActivity"
             android:configChanges="keyboardHidden|orientation"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.NoTitleBar" />
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name="com.thanone.palc.activity.WebViewActivity"
             android:configChanges="keyboardHidden|orientation"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.NoTitleBar" />
+            android:screenOrientation="portrait"/>
 
         <service android:name="com.thanone.palc.service.UploadService"></service>
 

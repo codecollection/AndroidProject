@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+
+    <!-- 表单域 -->
+    <dimen name="margin_form_left">10dp</dimen>
+    <dimen name="margin_form_top">15dp</dimen>
+    <dimen name="margin_form_between">10dp</dimen>
+    <dimen name="margin_form_bottom">15dp</dimen>
+
+</resources>

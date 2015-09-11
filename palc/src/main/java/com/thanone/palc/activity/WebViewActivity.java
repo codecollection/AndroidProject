@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lidroid.xutils.ViewUtils;
@@ -20,6 +21,8 @@ public class WebViewActivity extends Activity {
 
     @ViewInject(R.id.header_title)
     private TextView header_title;
+    @ViewInject(R.id.header_back)
+    private ImageView header_back;
 
     @ViewInject(R.id.webview_content)
     private WebView webview_content;
@@ -32,6 +35,7 @@ public class WebViewActivity extends Activity {
         ViewUtils.inject(this);
 
         header_title.setText(getIntent().getStringExtra("title"));
+        header_back.setVisibility(View.VISIBLE);
 
         initWebView();
     }

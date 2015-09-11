@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_header" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_form_bottom"
+        android:layout_marginLeft="@dimen/margin_form_left"
+        android:layout_marginRight="@dimen/margin_form_left"
+        android:layout_marginTop="@dimen/margin_form_top"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingBottom="10dp"
+        android:paddingLeft="12dp"
+        android:paddingTop="10dp">
+
+        <TextView
+            android:id="@+id/userinfo_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="手机号："
+            android:textSize="18dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/bg" />
+
+        <TextView
+            android:id="@+id/userinfo_regtime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="注册时间："
+            android:textSize="18dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/bg" />
+
+        <TextView
+            android:id="@+id/userinfo_logintime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="最后登录时间："
+            android:textSize="18dp" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/userinfo_logout"
+        style="@style/button_submit"
+        android:text="注销" />
+
+</LinearLayout>

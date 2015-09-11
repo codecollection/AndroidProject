@@ -4,5 +4,6 @@
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
     <color name="bg">#EDECF1</color>
+    <color name="bgtitle">#0E3287</color>
 
 </resources>

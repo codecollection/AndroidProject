@@ -11,22 +11,16 @@
         android:id="@+id/sjhy_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_form_bottom"
+        android:layout_marginLeft="@dimen/margin_form_left"
+        android:layout_marginRight="@dimen/margin_form_left"
+        android:layout_marginTop="@dimen/margin_form_top"
         android:hint="请输入口令"
-        android:inputType="textPassword"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginBottom="10dp" />
+        android:inputType="textPassword" />
 
     <Button
         android:id="@+id/sjhy_submit"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:background="#0E3287"
-        android:text="开始核验"
-        android:textColor="@color/white"
-        android:textSize="22sp" />
+        style="@style/button_submit"
+        android:text="开始核验" />
 
 </LinearLayout>

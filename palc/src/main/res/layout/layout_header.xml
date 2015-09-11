@@ -11,7 +11,8 @@
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:scaleType="centerInside"
-        android:src="@drawable/d_header_back" />
+        android:src="@drawable/d_header_back"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/header_title"

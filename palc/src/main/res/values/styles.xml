@@ -6,10 +6,6 @@
         <item name="android:windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.NoTitleBar" parent="@android:style/Theme.NoTitleBar">
-        <item name="android:windowContentOverlay">@null</item>
-    </style>
-
     <style name="footbar">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">fill_parent</item>
@@ -23,7 +19,17 @@
     </style>
 
     <style name="main_footbar_radio" parent="footbar">
-        <item name="android:padding">0dip</item>
+        <item name="android:padding">0dp</item>
+    </style>
+
+    <style name="button_submit">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_marginLeft">12dp</item>
+        <item name="android:layout_marginRight">12dp</item>
+        <item name="android:background">@color/bgtitle</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">22sp</item>
     </style>
 
 </resources>

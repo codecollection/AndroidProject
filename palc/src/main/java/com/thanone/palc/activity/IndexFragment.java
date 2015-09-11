@@ -20,9 +20,10 @@ import com.zcj.android.web.HttpUtilsHandler;
 import java.util.ArrayList;
 import java.util.List;
 
-public class IndexActivity extends Fragment {
+public class IndexFragment extends Fragment {
 
     private MyApplication application;
+    private MainsActivity activity;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -36,6 +37,7 @@ public class IndexActivity extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         application = (MyApplication) getActivity().getApplication();
+        activity = (MainsActivity) getActivity();
 
         List<String> dataList = new ArrayList<>();
         dataList.add("assets/img/d_index_img1.png");
@@ -77,13 +79,15 @@ public class IndexActivity extends Fragment {
 
     @OnClick(R.id.index_sjhy)
     private void sjhy(View v) {
+        // TODO 验证是否核验过
+
         UiUtil.toSjhy(getActivity());
     }
 
     @OnClick(R.id.index_jfcx)
     private void jfcx(View v) {
         if (application.getLoginUserId() == null) {
-            UiUtil.toLogin(getActivity());
+            activity.toFragment(R.id.main_footer_4);
         } else {
             httpScore(application.getLoginUserId());
         }
@@ -92,7 +96,7 @@ public class IndexActivity extends Fragment {
     @OnClick(R.id.index_ejsk)
     private void ejsk(View v) {
         if (application.getLoginUserId() == null) {
-            UiUtil.toLogin(getActivity());
+            activity.toFragment(R.id.main_footer_4);
         } else {
             LocationBean loc = application.getLastLocation();
             if (loc == null) {

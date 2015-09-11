@@ -88,6 +88,11 @@ public class MainsActivity extends FragmentActivity {
         MobclickAgent.onPause(this);
     }
 
+    /** 切换到指定的菜单 */
+    public void toFragment(int id) {
+        main_radiogroup.check(id);
+    }
+
     private void setRadioGroupChangeListener() {
         main_radiogroup.setOnCheckedChangeListener(new OnCheckedChangeListener() {
             @Override

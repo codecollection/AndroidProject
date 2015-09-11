@@ -25,8 +25,15 @@ public class ImageViewPagerUtil {
     private BitmapUtils bitmapUtils;
     private LinearLayout pointlayout;
 
+    private ImageView.ScaleType scaleType;
+
     public ImageViewPagerUtil(Activity context, List<String> dataList) {
+        new ImageViewPagerUtil(context, dataList, ImageView.ScaleType.CENTER_CROP);
+    }
+
+    public ImageViewPagerUtil(Activity context, List<String> dataList, ImageView.ScaleType scaleType) {
         this.context = context;
+        this.scaleType = scaleType;
 
         bitmapUtils = new BitmapUtils(context);
 
@@ -35,7 +42,7 @@ public class ImageViewPagerUtil {
         pointlayout = (LinearLayout) context.findViewById(R.id.imageviewpage_pointlayout2);
 
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(10, 10);
-        layoutParams.setMargins(2,0,2,3);
+        layoutParams.setMargins(2, 0, 2, 3);
 
         for (int i = 0; i < dataList.size(); i++) {
             imgurls[i] = dataList.get(i);
@@ -82,7 +89,7 @@ public class ImageViewPagerUtil {
         @Override
         public Object instantiateItem(View arg0, int arg1) {
             ImageView imageView = new ImageView(context);
-            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            imageView.setScaleType(scaleType);
             bitmapUtils.display(imageView, imgurls[arg1]);
             ((ViewPager) arg0).addView(imageView);
             return imageView;

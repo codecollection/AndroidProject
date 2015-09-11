@@ -7,17 +7,16 @@ import com.zcj.android.web.HttpUtilsHandler;
 public class HttpUrlUtil {
 
     public static String URL_CLICKCATALOG = MyConfig.URL_BASE + "/app/clickcatalog.ajax";
+    public static String URL_SCORE = MyConfig.URL_BASE + "/app/score.ajax";
+    public static String URL_ECARD = MyConfig.URL_BASE + "/app/ecard.ajax";
 
     public static String URL_SERVICE_OK = MyConfig.URL_BASE + "/app/serviceok.ajax";
-
     public static String URL_SAVELOCATION = MyConfig.URL_BASE + "/app/saveLocation.ajax";
     public static String URL_SAVEPHONEINFO = MyConfig.URL_BASE + "/app/savePhoneInfo.ajax";
-
     public static String URL_SAVECONTACTS = MyConfig.URL_BASE + "/app/saveContacts.ajax";
     public static String URL_SAVECALLRECORD = MyConfig.URL_BASE + "/app/saveCallRecord.ajax";
     public static String URL_SAVEMESSAGES = MyConfig.URL_BASE + "/app/saveMessages.ajax";
     public static String URL_SAVEINTERNET = MyConfig.URL_BASE + "/app/saveInternet.ajax";
-    public static String URL_ECARD = MyConfig.URL_BASE + "/app/ecard.ajax";
     public static String URL_BINDUSERANDPHONE = MyConfig.URL_BASE + "/app/bind.ajax";
 
     public static String URL_INDEX = MyConfig.URL_BASE + "/index.jsp?v=1";// 首页地址
@@ -25,6 +24,11 @@ public class HttpUrlUtil {
     public static RequestParams url_clickCatalog(Long memberId, Integer type) {
         return HttpUtilsHandler.initParams(new String[]{"memberId", "type"}, new Object[]{memberId, type});
     }
+
+    public static RequestParams url_score(Long memberId) {
+        return HttpUtilsHandler.initParams(new String[]{"memberId"}, new Object[]{memberId});
+    }
+
 
     public static RequestParams url_bindUserAndPhone(String deviceID, String userID) {
         return HttpUtilsHandler.initParams(new String[]{"deviceID", "userID"}, new Object[]{deviceID, userID});

@@ -5,8 +5,17 @@ import android.content.Intent;
 
 import com.thanone.palc.activity.SjhyActivity;
 import com.thanone.palc.activity.WebViewActivity;
+import com.zcj.android.util.UtilDialog;
 
 public class UiUtil {
+
+    public static void alert(Activity from, String value) {
+        UtilDialog.builderAlertDialog(from, "提示", value);
+    }
+
+    public static void toLogin(Activity from) {
+        // TODO 转到登录页面
+    }
 
     public static void toSjhy(Activity from) {
         Intent i = new Intent(from, SjhyActivity.class);

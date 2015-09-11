@@ -10,9 +10,11 @@ import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.thanone.palc.MyApplication;
 import com.thanone.palc.R;
+import com.thanone.palc.bean.LocationBean;
 import com.thanone.palc.util.HttpUrlUtil;
 import com.thanone.palc.util.UiUtil;
 import com.zcj.android.view.imageviewpager2.ImageViewPagerUtil;
+import com.zcj.android.web.HttpCallback;
 import com.zcj.android.web.HttpUtilsHandler;
 
 import java.util.ArrayList;
@@ -76,6 +78,47 @@ public class IndexActivity extends Fragment {
     @OnClick(R.id.index_sjhy)
     private void sjhy(View v) {
         UiUtil.toSjhy(getActivity());
+    }
+
+    @OnClick(R.id.index_jfcx)
+    private void jfcx(View v) {
+        if (application.getLoginUserId() == null) {
+            UiUtil.toLogin(getActivity());
+        } else {
+            httpScore(application.getLoginUserId());
+        }
+    }
+
+    @OnClick(R.id.index_ejsk)
+    private void ejsk(View v) {
+        if (application.getLoginUserId() == null) {
+            UiUtil.toLogin(getActivity());
+        } else {
+            LocationBean loc = application.getLastLocation();
+            if (loc == null) {
+                UiUtil.alert(getActivity(), "获取信息失败，请稍后再试");
+            } else {
+                httpEcard(application.getLoginUserId(), loc.getLongitude(), loc.getLatitude(), loc.getAddrStr());
+            }
+        }
+    }
+
+    private void httpScore(Long memberId) {
+        HttpUtilsHandler.send(application, HttpUrlUtil.URL_SCORE, HttpUrlUtil.url_score(memberId), new HttpCallback() {
+            @Override
+            public void success(String dataJsonString) {
+                UiUtil.alert(getActivity(), dataJsonString);
+            }
+        }, true);
+    }
+
+    private void httpEcard(Long memberId, String lng, String lat, String address) {
+        HttpUtilsHandler.send(application, HttpUrlUtil.URL_ECARD, HttpUrlUtil.url_ecard(memberId, lng, lat, address), new HttpCallback() {
+            @Override
+            public void success(String dataJsonString) {
+                UiUtil.alert(getActivity(), dataJsonString);
+            }
+        }, true);
     }
 
 }

@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <fragment
-        android:id="@+id/main_fragment_1"
+        android:id="@+id/main_fragment_index"
         android:name="com.thanone.palc.activity.IndexFragment"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
@@ -15,7 +15,7 @@
         tools:layout="@layout/layout_index" />
 
     <fragment
-        android:id="@+id/main_fragment_2"
+        android:id="@+id/main_fragment_clue"
         android:name="com.thanone.palc.activity.ClueFragment"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
@@ -23,7 +23,7 @@
         tools:layout="@layout/layout_clue" />
 
     <fragment
-        android:id="@+id/main_fragment_3"
+        android:id="@+id/main_fragment_house"
         android:name="com.thanone.palc.activity.HouseFragment"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
@@ -31,12 +31,21 @@
         tools:layout="@layout/layout_house" />
 
     <fragment
-        android:id="@+id/main_fragment_4"
+        android:id="@+id/main_fragment_login"
         android:name="com.thanone.palc.activity.LoginFragment"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         tools:layout="@layout/layout_login" />
+
+    <fragment
+        android:id="@+id/main_fragment_userinfo"
+        android:name="com.thanone.palc.activity.UserinfoFragment"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        tools:layout="@layout/layout_userinfo" />
+
 
     <RadioGroup
         android:id="@+id/main_radiogroup"

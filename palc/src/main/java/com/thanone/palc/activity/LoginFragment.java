@@ -13,7 +13,6 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.thanone.palc.MyApplication;
 import com.thanone.palc.R;
-import com.thanone.palc.util.UiUtil;
 
 public class LoginFragment extends Fragment {
 
@@ -38,19 +37,25 @@ public class LoginFragment extends Fragment {
 
         application = (MyApplication) getActivity().getApplication();
         activity = (MainsActivity) getActivity();
+    }
 
-        if (application.getLoginUserId() == null) {
-            header_title.setText("登录");
-            header_back.setVisibility(View.GONE);
-        } else {
-            UiUtil.toUserinfo(getActivity());
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden) {
+            if (application.getLoginUserId() == null) {
+                header_title.setText("登录");
+                header_back.setVisibility(View.GONE);
+            } else {
+                activity.toFragment(R.id.main_footer_4);
+            }
         }
     }
 
     @OnClick(R.id.login_submit)
     private void login_submit(View v) {
         application.login();
-        UiUtil.toUserinfo(getActivity());
+        activity.toFragment(R.id.main_footer_4);
     }
 
 }

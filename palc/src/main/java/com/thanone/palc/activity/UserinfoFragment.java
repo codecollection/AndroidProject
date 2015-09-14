@@ -44,11 +44,20 @@ public class UserinfoFragment extends Fragment {
 
         application = (MyApplication) getActivity().getApplication();
         activity = (MainsActivity) getActivity();
+    }
 
-        header_title.setText("用户信息");
-        header_back.setVisibility(View.GONE);
-
-        initDate();
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden) {
+            if (application.getLoginUserId() == null) {
+                activity.toFragment(R.id.main_footer_4);
+            } else {
+                header_title.setText("用户信息");
+                header_back.setVisibility(View.GONE);
+                initDate();
+            }
+        }
     }
 
     private void initDate() {
@@ -61,6 +70,7 @@ public class UserinfoFragment extends Fragment {
     @OnClick(R.id.userinfo_logout)
     private void userinfo_logout(View v) {
         application.logout();
+        activity.toFragment(R.id.main_footer_4);
     }
 
 }

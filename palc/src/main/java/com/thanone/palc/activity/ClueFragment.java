@@ -21,9 +21,6 @@ import com.zcj.android.web.HttpCallback;
 import com.zcj.android.web.HttpUtilsHandler;
 import com.zcj.util.UtilString;
 
-/**
- * 线索举报
- */
 public class ClueFragment extends Fragment {
 
     private MyApplication application;

@@ -5,7 +5,107 @@
     android:background="@color/bg"
     android:orientation="vertical">
 
-    <include layout="@layout/layout_header"/>
+    <include layout="@layout/layout_header" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_form_left"
+        android:layout_marginRight="@dimen/margin_form_left"
+        android:layout_marginTop="@dimen/margin_form_top"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="身份证号码（或拍照上传）"
+            android:inputType="number"
+            android:maxLength="18" />
+
+        <ImageView
+            android:id="@+id/house_idcard"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:src="@drawable/d_house_photo" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/house_idcardimg"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginLeft="@dimen/margin_form_left"
+        android:layout_marginRight="@dimen/margin_form_left"
+        android:src="@drawable/d_index_ywcx"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_form_left"
+        android:layout_marginRight="@dimen/margin_form_left"
+        android:layout_marginTop="@dimen/margin_form_between"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="详细地址（或地图定位）"
+            android:inputType="text" />
+
+        <ImageView
+            android:id="@+id/house_address"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:src="@drawable/d_house_map" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_form_left"
+        android:layout_marginRight="@dimen/margin_form_left"
+        android:layout_marginTop="@dimen/margin_form_between"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="入住日期（如20150101）"
+            android:inputType="number"
+            android:maxLength="8"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_form_bottom"
+        android:layout_marginLeft="@dimen/margin_form_left"
+        android:layout_marginRight="@dimen/margin_form_left"
+        android:layout_marginTop="@dimen/margin_form_between"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="手机号码"
+            android:inputType="number"
+            android:maxLength="11"/>
+
+    </LinearLayout>
+
+    <Button
+        style="@style/button_submit"
+        android:text="提交" />
 
 </LinearLayout>

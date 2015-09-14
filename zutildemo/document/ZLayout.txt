@@ -184,7 +184,7 @@ TextView
 	android:phonenumber 是否使用电话号码输入方式 
 	android:privateImeOptions  
 	android:scrollHorizontally  
-	android:selectAllOnFocus   
+	android:selectAllOnFocus 聚焦时选中所有
 	android:shadowColor 文本阴影颜色 
 	android:shadowDx 阴影的水平偏移 
 	android:shadowDy 阴影的垂直偏移 

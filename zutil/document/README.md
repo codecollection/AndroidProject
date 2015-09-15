@@ -237,5 +237,7 @@ Color.parseColor("#A4C639")
 	            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
 	            android:windowSoftInputMode="stateAlwaysHidden" >
 	        </activity>
+
+# com.zcj.android.util.PhotoChooseUtils - 手机相册/手机拍照 + 剪裁 #
 	
 	

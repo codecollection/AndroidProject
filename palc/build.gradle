@@ -57,6 +57,15 @@ android {
             shrinkResources true    // 移除无用的resource文件
             signingConfig signingConfigs.release    // 证书
         }
+        releaseThanone {
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            buildConfigField "String", "URLBASE", "\"http://122.228.249.11:48080/palccms\""// 60.190.82.250:4112
+            versionNameSuffix "-thanone"
+            minifyEnabled false  // 混淆
+            zipAlignEnabled true    // 混淆后的zip优化，默认为true，可不写。当不显示配置为true时，不会生成unaligned.apk
+            shrinkResources true    // 移除无用的resource文件
+            signingConfig signingConfigs.release    // 证书
+        }
     }
     sourceSets {
         main {

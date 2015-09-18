@@ -125,11 +125,11 @@ public class HttpUtilsHandler {
 						callback.error();
 					}
 					if (alertErrorString) {
-						String errorString = "";
+						String errorString = "操作失败";
 						if (sr.getD() != null) {
-							errorString = "：" + String.valueOf(sr.getD());
+							errorString = String.valueOf(sr.getD());
 						}
-						Toast.makeText(context, "操作失败" + errorString, Toast.LENGTH_SHORT).show();
+						Toast.makeText(context, errorString, Toast.LENGTH_SHORT).show();
 					}
 				}
 				if (loadingDialog != null) {

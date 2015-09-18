@@ -1,6 +1,5 @@
 package com.thanone.palc.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -51,20 +50,7 @@ public class HouseFragment extends Fragment {
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        MyConfig.log("HouseFragment onAttach");
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        MyConfig.log("HouseFragment onCreate");
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        MyConfig.log("HouseFragment onCreateView");
         View view = inflater.inflate(R.layout.layout_house, container, false);
         ViewUtils.inject(this, view);
         return view;
@@ -81,20 +67,6 @@ public class HouseFragment extends Fragment {
         header_back.setVisibility(View.GONE);
 
         photoChooseUtils = new PhotoChooseUtils(getActivity(), this, false);
-
-        MyConfig.log("HouseFragment onActivityCreated");
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        MyConfig.log("HouseFragment onStart");
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        MyConfig.log("HouseFragment onResume");
     }
 
     @Override
@@ -105,30 +77,6 @@ public class HouseFragment extends Fragment {
         } else {
             MyConfig.log("HouseFragment onHiddenChanged 显示了");
         }
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        MyConfig.log("HouseFragment onPause");
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        MyConfig.log("HouseFragment onStop");
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        MyConfig.log("HouseFragment onDestroyView");
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        MyConfig.log("HouseFragment onDestroy");
     }
 
 }

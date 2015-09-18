@@ -52,12 +52,22 @@ public class LoginFragment extends Fragment {
     }
 
     @Override
+    public void onStart() {
+        if (!isHidden() && application.getLoginUserId() != null) {
+            activity.toFragment(R.id.main_footer_4);
+        }
+        super.onStart();
+    }
+
+    @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         if (!hidden) {
             if (application.getLoginUserId() == null) {
                 header_title.setText("登录");
                 header_back.setVisibility(View.GONE);
+                login_username.setText("");
+                login_password.setText("");
             } else {
                 activity.toFragment(R.id.main_footer_4);
             }

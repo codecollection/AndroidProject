@@ -61,14 +61,19 @@ public class RegActivity extends BaseActivity {
 
         if (UtilString.isBlank(idcard)) {
             UiUtil.alert(this, "请输入身份证号码");
+            reg_idcard.requestFocus();
         } else if (UtilString.isBlank(tel)) {
             UiUtil.alert(this, "请输入手机号码");
+            reg_tel.requestFocus();
         } else if (UtilString.isBlank(password)) {
             UiUtil.alert(this, "请输入登录密码");
+            reg_password.requestFocus();
         } else if (UtilString.isBlank(password2)) {
             UiUtil.alert(this, "请输入确认密码");
+            reg_password2.requestFocus();
         } else if (!password.equals(password2)) {
             UiUtil.alert(this, "两次输入的密码不一致");
+            reg_password.requestFocus();
         } else {
             httpReg(tel, password, idcard, application.getPhoneId());
         }

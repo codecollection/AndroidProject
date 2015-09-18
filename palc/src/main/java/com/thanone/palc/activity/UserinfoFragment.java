@@ -13,6 +13,7 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.thanone.palc.MyApplication;
 import com.thanone.palc.R;
+import com.zcj.android.util.UtilDialog;
 import com.zcj.util.UtilDate;
 
 public class UserinfoFragment extends Fragment {
@@ -65,11 +66,16 @@ public class UserinfoFragment extends Fragment {
 
     @OnClick(R.id.userinfo_logout)
     private void userinfo_logout(View v) {
-        application.setLoginUserId(null);
-        application.setLoginUser(null);
-        application.saveUserInfo(null, null);
+        UtilDialog.builderAlertDialog2(getActivity(), null, "确定注销", new UtilDialog.DialogCallback() {
+            @Override
+            public void doSomething_ChickOK() {
+                application.setLoginUserId(null);
+                application.setLoginUser(null);
+                application.saveUserInfo(null, null);
 
-        activity.toFragment(R.id.main_footer_4);
+                activity.toFragment(R.id.main_footer_4);
+            }
+        });
     }
 
 }

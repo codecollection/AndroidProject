@@ -80,7 +80,7 @@ public class MainsActivity extends FragmentActivity {
         autoLogin();
 
         // 读取手机参数并上传
-        application.readInfoToDatebaseAndUpload(false, false, false, false, true, true, null);
+        application.readInfoToDatebaseAndUpload(false, false, false, false, true, true, null, null);
     }
 
     // 自动登录

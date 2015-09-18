@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
+import com.thanone.palc.activity.MainsActivity;
 import com.thanone.palc.activity.RegActivity;
 import com.thanone.palc.activity.SjhyActivity;
 import com.thanone.palc.activity.WebViewActivity;
@@ -13,6 +14,11 @@ public class UiUtil {
 
     public static void alert(Context from, String value) {
         UtilDialog.dialog(from, value);
+    }
+
+    public static void toMains(Activity from) {
+        Intent i = new Intent(from, MainsActivity.class);
+        from.startActivity(i);
     }
 
     public static void toReg(Activity from) {

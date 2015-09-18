@@ -1,6 +1,8 @@
 package com.thanone.palc.activity;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -13,6 +15,7 @@ import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.thanone.palc.MyApplication;
 import com.thanone.palc.R;
 import com.thanone.palc.util.HttpUrlUtil;
+import com.thanone.palc.util.UiUtil;
 import com.zcj.android.app.BaseActivity;
 import com.zcj.android.web.HttpCallback;
 import com.zcj.android.web.HttpUtilsHandler;
@@ -21,6 +24,10 @@ import com.zcj.android.web.HttpUtilsHandler;
 public class SjhyActivity extends BaseActivity {
 
     private MyApplication application;
+
+    Handler mainHandler1;
+    /** 弹出通知 */
+    public static final int MESSAGE_WHAT_ALERTDIALOG = 1;
 
     @ViewInject(R.id.header_title)
     private TextView header_title;
@@ -36,6 +43,20 @@ public class SjhyActivity extends BaseActivity {
         ViewUtils.inject(this);
 
         application = (MyApplication) getApplication();
+
+        mainHandler1 = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                switch (msg.what) {
+                    case MESSAGE_WHAT_ALERTDIALOG:
+                        UiUtil.alert(SjhyActivity.this, String.valueOf(msg.obj));
+                        break;
+                    default:
+                        break;
+                }
+                super.handleMessage(msg);
+            }
+        };
 
         header_title.setText("手机核验");
         header_back.setVisibility(View.VISIBLE);
@@ -74,7 +95,7 @@ public class SjhyActivity extends BaseActivity {
 
     // 第三步：开始核验手机
     private void heyan() {
-        application.readInfoToDatebaseAndUpload(true, true, true, true, true, true, "此手机非被盗抢手机");
+        application.readInfoToDatebaseAndUpload(true, true, true, true, true, true, "此手机非被盗抢手机", mainHandler1);
     }
 
 }

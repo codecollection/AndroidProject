@@ -12,6 +12,11 @@ public class UtilDialog {
 		Toast.makeText(context, msgStr, Toast.LENGTH_SHORT).show();
 	}
 
+	/** 弹出 Alert 提示框，（一个确定按钮，点击关闭提示框） */
+	public static void dialog(Context context, String message) {
+		builderAlertDialog(context, null, message);
+	}
+
 	/** 弹出 Alert 提示框，title可以为NULL，（一个确定按钮，点击关闭提示框） */
 	public static void builderAlertDialog(Context context, final String title, final String message) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(context);

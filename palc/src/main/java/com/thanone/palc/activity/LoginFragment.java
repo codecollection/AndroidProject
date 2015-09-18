@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,6 +14,12 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.thanone.palc.MyApplication;
 import com.thanone.palc.R;
+import com.thanone.palc.bean.Member;
+import com.thanone.palc.util.HttpUrlUtil;
+import com.thanone.palc.util.UiUtil;
+import com.zcj.android.web.HttpCallback;
+import com.zcj.android.web.HttpUtilsHandler;
+import com.zcj.android.web.ServiceResult;
 
 public class LoginFragment extends Fragment {
 
@@ -23,6 +30,11 @@ public class LoginFragment extends Fragment {
     private TextView header_title;
     @ViewInject(R.id.header_back)
     private ImageView header_back;
+
+    @ViewInject(R.id.login_username)
+    private EditText login_username;
+    @ViewInject(R.id.login_password)
+    private EditText login_password;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -52,10 +64,32 @@ public class LoginFragment extends Fragment {
         }
     }
 
+    @OnClick(R.id.login_reg)
+    private void login_reg(View v) {
+        UiUtil.toReg(getActivity());
+    }
+
     @OnClick(R.id.login_submit)
     private void login_submit(View v) {
-        application.login();
-        activity.toFragment(R.id.main_footer_4);
+        String username = login_username.getText().toString();
+        String password = login_password.getText().toString();
+        httpLogin(username, password, application.getPhoneId());
+    }
+
+    private void httpLogin(final String username, final String password, String phoneId) {
+        HttpUtilsHandler.send(getActivity(), HttpUrlUtil.URL_LOGIN, HttpUrlUtil.url_login(username, password, phoneId), new HttpCallback() {
+            @Override
+            public void success(String dataJsonString) {
+                Member loginUser = ServiceResult.GSON_DT.fromJson(dataJsonString, Member.class);
+                if (loginUser != null) {
+                    application.setLoginUser(loginUser);
+                    application.setLoginUserId(loginUser.getId());
+                    application.saveUserInfo(username, password);
+
+                    activity.toFragment(R.id.main_footer_4);
+                }
+            }
+        }, true);
     }
 
 }

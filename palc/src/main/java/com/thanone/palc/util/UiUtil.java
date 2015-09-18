@@ -1,27 +1,22 @@
 package com.thanone.palc.util;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 
-import com.thanone.palc.activity.MainsActivity;
+import com.thanone.palc.activity.RegActivity;
 import com.thanone.palc.activity.SjhyActivity;
-import com.thanone.palc.activity.UserinfoFragment;
 import com.thanone.palc.activity.WebViewActivity;
 import com.zcj.android.util.UtilDialog;
 
 public class UiUtil {
 
-    public static void alert(Activity from, String value) {
-        UtilDialog.builderAlertDialog(from, "提示", value);
+    public static void alert(Context from, String value) {
+        UtilDialog.dialog(from, value);
     }
 
-    public static void toMains(Activity from) {
-        Intent i = new Intent(from, MainsActivity.class);
-        from.startActivity(i);
-    }
-
-    public static void toUserinfo(Activity from) {
-        Intent i = new Intent(from, UserinfoFragment.class);
+    public static void toReg(Activity from) {
+        Intent i = new Intent(from, RegActivity.class);
         from.startActivity(i);
     }
 

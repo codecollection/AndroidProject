@@ -79,9 +79,7 @@ public class IndexFragment extends Fragment {
 
     @OnClick(R.id.index_sjhy)
     private void sjhy(View v) {
-        // TODO 验证是否核验过
-
-        UiUtil.toSjhy(getActivity());
+        httpHeyan(application.getPhoneId());
     }
 
     @OnClick(R.id.index_jfcx)
@@ -107,6 +105,17 @@ public class IndexFragment extends Fragment {
         }
     }
 
+    // 验证是否已经核验过。如果失败，则弹出提示；如果成功，则转到核验页面
+    private void httpHeyan(String phoneId) {
+        HttpUtilsHandler.send(application, HttpUrlUtil.URL_HEYAN, HttpUrlUtil.url_heyan(phoneId), new HttpCallback() {
+            @Override
+            public void success(String dataJsonString) {
+                UiUtil.toSjhy(getActivity());
+            }
+        }, true);
+    }
+
+    // 查询积分。如果失败，则弹出提示；如果成功，则弹出提示。
     private void httpScore(Long memberId) {
         HttpUtilsHandler.send(application, HttpUrlUtil.URL_SCORE, HttpUrlUtil.url_score(memberId), new HttpCallback() {
             @Override
@@ -116,6 +125,7 @@ public class IndexFragment extends Fragment {
         }, true);
     }
 
+    // E居刷卡。如果失败，则弹出提示；如果成功，则弹出提示。
     private void httpEcard(Long memberId, String lng, String lat, String address) {
         HttpUtilsHandler.send(application, HttpUrlUtil.URL_ECARD, HttpUrlUtil.url_ecard(memberId, lng, lat, address), new HttpCallback() {
             @Override

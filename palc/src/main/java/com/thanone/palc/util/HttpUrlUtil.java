@@ -47,7 +47,7 @@ public class HttpUrlUtil {
         return HttpUtilsHandler.initParams(new String[]{"memberId"}, new Object[]{memberId});
     }
 
-    public static RequestParams url_heyan(Long deviceID) {
+    public static RequestParams url_heyan(String deviceID) {
         return HttpUtilsHandler.initParams(new String[]{"deviceID"}, new Object[]{deviceID});
     }
 
@@ -63,8 +63,8 @@ public class HttpUrlUtil {
         return HttpUtilsHandler.initParams(new String[]{"username", "password", "deviceID"}, new Object[]{username, password, deviceID});
     }
 
-    public static RequestParams url_reg(String username, String password, String deviceID) {
-        return HttpUtilsHandler.initParams(new String[]{"username", "password", "deviceID"}, new Object[]{username, password, deviceID});
+    public static RequestParams url_reg(String username, String password, String idcard, String deviceID) {
+        return HttpUtilsHandler.initParams(new String[]{"username", "password", "idcard", "deviceID"}, new Object[]{username, password, idcard, deviceID});
     }
 
     public static RequestParams url_bindUserAndPhone(String deviceID, String userID) {

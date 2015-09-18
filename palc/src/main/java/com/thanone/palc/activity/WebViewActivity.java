@@ -1,6 +1,5 @@
 package com.thanone.palc.activity;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -13,11 +12,12 @@ import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.thanone.palc.R;
+import com.zcj.android.app.BaseActivity;
 import com.zcj.android.view.webviewshell.OnQuitListener;
 import com.zcj.android.view.webviewshell.WebViewUtil;
 
 @ContentView(R.layout.layout_webview)
-public class WebViewActivity extends Activity {
+public class WebViewActivity extends BaseActivity {
 
     @ViewInject(R.id.header_title)
     private TextView header_title;

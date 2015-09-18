@@ -13,6 +13,7 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.thanone.palc.MyApplication;
 import com.thanone.palc.R;
+import com.zcj.util.UtilDate;
 
 public class UserinfoFragment extends Fragment {
 
@@ -50,26 +51,24 @@ public class UserinfoFragment extends Fragment {
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         if (!hidden) {
-            if (application.getLoginUserId() == null) {
+            if (application.getLoginUserId() == null || application.getLoginUser() == null) {
                 activity.toFragment(R.id.main_footer_4);
             } else {
                 header_title.setText("用户信息");
                 header_back.setVisibility(View.GONE);
-                initDate();
+                userinfo_phone.setText("手机号：" + application.getLoginUser().getPhone());
+                userinfo_regtime.setText("注册时间：" + UtilDate.format(application.getLoginUser().getRegTime()));
+                userinfo_logintime.setText("最后登录时间：" + UtilDate.format(application.getLoginUser().getLastLogin()));
             }
         }
     }
 
-    private void initDate() {
-        // TODO
-        userinfo_phone.setText("手机号：13888888888");
-        userinfo_regtime.setText("注册时间：2015-07-01 16:00:00");
-        userinfo_logintime.setText("最后登录时间：2015-09-01 16:00:00");
-    }
-
     @OnClick(R.id.userinfo_logout)
     private void userinfo_logout(View v) {
-        application.logout();
+        application.setLoginUserId(null);
+        application.setLoginUser(null);
+        application.saveUserInfo(null, null);
+
         activity.toFragment(R.id.main_footer_4);
     }
 

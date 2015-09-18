@@ -49,6 +49,12 @@
             android:screenOrientation="portrait"/>
 
         <activity
+            android:name="com.thanone.palc.activity.RegActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
+
+        <activity
             android:name="com.thanone.palc.activity.WebViewActivity"
             android:configChanges="keyboardHidden|orientation"
             android:launchMode="singleTask"

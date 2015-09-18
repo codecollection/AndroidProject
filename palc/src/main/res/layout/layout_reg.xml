@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_header" />
+
+    <EditText
+        android:id="@+id/reg_idcard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_form_left"
+        android:layout_marginRight="@dimen/margin_form_left"
+        android:layout_marginTop="@dimen/margin_form_top"
+        android:hint="身份证号码"
+        android:inputType="number"
+        android:maxLength="18" />
+
+    <EditText
+        android:id="@+id/reg_tel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_form_left"
+        android:layout_marginRight="@dimen/margin_form_left"
+        android:layout_marginTop="@dimen/margin_form_between"
+        android:hint="手机号码"
+        android:inputType="number"
+        android:maxLength="11"/>
+
+    <EditText
+        android:id="@+id/reg_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_form_left"
+        android:layout_marginRight="@dimen/margin_form_left"
+        android:layout_marginTop="@dimen/margin_form_between"
+        android:hint="登录密码"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/reg_password2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_form_left"
+        android:layout_marginRight="@dimen/margin_form_left"
+        android:layout_marginTop="@dimen/margin_form_between"
+        android:hint="确认密码"
+        android:inputType="textPassword" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/margin_form_left"
+        android:layout_marginLeft="@dimen/margin_form_left"
+        android:layout_marginBottom="@dimen/margin_form_bottom"
+        android:text="密码应为8-16位的大小写字母、数字、下划线的组合。"/>
+
+    <Button
+        android:id="@+id/reg_submit"
+        style="@style/button_submit"
+        android:text="注册" />
+
+</LinearLayout>

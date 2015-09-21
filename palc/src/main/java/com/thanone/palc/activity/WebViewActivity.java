@@ -41,6 +41,12 @@ public class WebViewActivity extends BaseActivity {
     }
 
     @Override
+    protected void onDestroy() {
+        webview_content.destroy();
+        super.onDestroy();
+    }
+
+    @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         Boolean result = webViewUtil.onKeyDown(keyCode, event, false, new OnQuitListener() {
             @Override

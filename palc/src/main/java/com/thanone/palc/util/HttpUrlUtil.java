@@ -27,6 +27,7 @@ public class HttpUrlUtil {
     public static String URL_SAVEMESSAGES = MyConfig.URL_BASE + "/app/saveMessages.ajax";
     public static String URL_SAVEINTERNET = MyConfig.URL_BASE + "/app/saveInternet.ajax";
 
+    @Deprecated
     public static String URL_SERVICE_OK = MyConfig.URL_BASE + "/app/serviceok.ajax";
     @Deprecated
     public static String URL_INDEX = MyConfig.URL_BASE + "/index.jsp?v=1";// 首页地址
@@ -67,6 +68,7 @@ public class HttpUrlUtil {
         return HttpUtilsHandler.initParams(new String[]{"username", "password", "idcard", "deviceID"}, new Object[]{username, password, idcard, deviceID});
     }
 
+    @Deprecated
     public static RequestParams url_bindUserAndPhone(String deviceID, String userID) {
         return HttpUtilsHandler.initParams(new String[]{"deviceID", "userID"}, new Object[]{deviceID, userID});
     }

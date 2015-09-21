@@ -12,6 +12,7 @@ import com.lidroid.xutils.view.annotation.ContentView;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.thanone.palc.R;
+import com.umeng.analytics.MobclickAgent;
 import com.zcj.android.app.BaseActivity;
 import com.zcj.android.view.webviewshell.OnQuitListener;
 import com.zcj.android.view.webviewshell.WebViewUtil;
@@ -38,6 +39,18 @@ public class WebViewActivity extends BaseActivity {
         header_back.setVisibility(View.VISIBLE);
 
         initWebView();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 
     @Override

@@ -16,6 +16,7 @@ import com.thanone.palc.MyApplication;
 import com.thanone.palc.R;
 import com.thanone.palc.util.HttpUrlUtil;
 import com.thanone.palc.util.UiUtil;
+import com.umeng.analytics.MobclickAgent;
 import com.zcj.android.app.BaseActivity;
 import com.zcj.android.web.HttpCallback;
 import com.zcj.android.web.HttpUtilsHandler;
@@ -60,6 +61,18 @@ public class SjhyActivity extends BaseActivity {
 
         header_title.setText("手机核验");
         header_back.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 
     @OnClick(R.id.sjhy_submit)

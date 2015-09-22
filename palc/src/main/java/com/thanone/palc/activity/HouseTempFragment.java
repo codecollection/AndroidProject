@@ -12,6 +12,7 @@ import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.thanone.palc.R;
 
+@Deprecated
 public class HouseTempFragment extends Fragment {
 
     @ViewInject(R.id.header_title)

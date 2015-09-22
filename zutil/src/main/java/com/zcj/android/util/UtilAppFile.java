@@ -56,7 +56,29 @@ public class UtilAppFile {
 		return context.getFilesDir().getAbsolutePath() + "/";
 	}
 
-	/** /mnt/sdcard/ */
+	/**
+	 * 系统在低存储空间的时候，会直接删除这个临时文件夹内容。
+	 * /data/data/xxx.xxx.xxx/cache/ */
+	public static String getCacheDir(Context context) {
+		return context.getCacheDir().getAbsolutePath() + "/";
+	}
+
+	/**
+	 * APP外部的文件目录，对应APP的“清除数据”按钮，APP卸载时被移除。
+	 * /storage/sdcard0/Android/data/xxx.xxx.xxx/files/ */
+	public static String getExternalFilesDir(Context context) {
+		return context.getExternalFilesDir(null).getAbsolutePath() + "/";
+	}
+
+	/**
+	 * APP外部的临时目录，对应APP的“清除缓存”按钮，APP卸载时被移除。
+	 * /storage/sdcard0/Android/data/xxx.xxx.xxx/cache/ */
+	public static String getExternalCacheDir(Context context) {
+		return context.getExternalCacheDir().getAbsolutePath() + "/";
+	}
+
+	/** SDCARD根目录，APP卸载时不移除。
+	 * /mnt/sdcard/ 或 /sdcard/ 或 /storage/sdcard0/ */
 	public static String getSdcardPath() {
 		if (sdcardExist()) {
 			return Environment.getExternalStorageDirectory().getAbsolutePath() + "/";
@@ -65,9 +87,9 @@ public class UtilAppFile {
 		}
 	}
 
-	/** 获取系统存储路径 */
+	/** /system */
 	public static String getRootDirectoryPath() {
-		return Environment.getRootDirectory().getAbsolutePath();
+		return Environment.getRootDirectory().getAbsolutePath() + "/";
 	}
 
 	/**

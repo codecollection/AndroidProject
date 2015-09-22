@@ -15,6 +15,7 @@ import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.thanone.palc.MyApplication;
 import com.thanone.palc.MyConfig;
 import com.thanone.palc.R;
+import com.thanone.palc.util.UiUtil;
 import com.zcj.android.util.PhotoChooseUtils;
 import com.zcj.android.util.UtilImage;
 import com.zcj.util.UtilString;
@@ -34,19 +35,26 @@ public class HouseFragment extends Fragment {
     @ViewInject(R.id.house_idcardimg)
     private ImageView house_idcardimg;
 
+    // 处理拍照上传和相册选图的回调
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        String imgPath = photoChooseUtils.onActivityResult(requestCode, data);
+        String imgPath = photoChooseUtils.onActivityResult(requestCode, resultCode, data);
         if (UtilString.isNotBlank(imgPath)) {
-            house_idcardimg.setVisibility(View.VISIBLE);
             house_idcardimg.setImageDrawable(UtilImage.getDrawableByFilePath(imgPath));
+            house_idcardimg.setVisibility(View.VISIBLE);
         }
     }
 
+    // 点击拍照上传按钮
     @OnClick(R.id.house_idcard)
     private void house_idcard(View v) {
         photoChooseUtils.show();
+    }
+
+    @OnClick(R.id.house_address)
+    private void house_address(View v) {
+        UiUtil.alert(getActivity(), "打开地图");
     }
 
     @Override
@@ -77,6 +85,11 @@ public class HouseFragment extends Fragment {
         } else {
             MyConfig.log("HouseFragment onHiddenChanged 显示了");
         }
+    }
+
+    @OnClick(R.id.house_submit)
+    private void house_submit(View v) {
+        UiUtil.alert(getActivity(), "111");
     }
 
 }

@@ -19,7 +19,7 @@ import java.io.File;
  * <p>     photoChooseUtils.show();</p>
  * <p>第三步（onActivityResult回调方法中）：</p>
  * <p>     super.onActivityResult(requestCode, resultCode, data);</p>
- * <p>     String imgPath = photoChooseUtils.onActivityResult(requestCode, data);</p>
+ * <p>     String imgPath = photoChooseUtils.onActivityResult(requestCode, resultCode, data);</p>
  * <p>     if (UtilString.isNotBlank(imgPath)) {</p>
  * <p>         house_idcardimg.setImageDrawable(UtilImage.getDrawableByFilePath(imgPath));</p>
  * <p>     }</p>
@@ -55,7 +55,7 @@ public class PhotoChooseUtils {
      *
      * @param activity
      * @param fragment 如果是fragment内使用，则传递此参数；如果是activity内使用，则只需要传递activity参数即可。
-     * @param cut 是否支持剪裁
+     * @param cut      是否支持剪裁
      */
     public PhotoChooseUtils(Activity activity, Fragment fragment, boolean cut) {
         this.activity = activity;
@@ -75,44 +75,45 @@ public class PhotoChooseUtils {
                         }
                         // 手机拍照
                         else if (item == 1) {
-                            cutBeforePath = initImgPath();
-                            startActionCamera(cutBeforePath);
+                            startActionCamera();
                         }
                     }
                 }).create();
         imageDialog.show();
     }
 
-    public String onActivityResult(int requestCode, Intent data) {
-        switch (requestCode) {
-            case REQUEST_CODE_GETIMAGE_BYCAMERA:// 相机拍照后返回
-                if (cut) {
-                    cutAfterPath = initImgPath();
-                    startActionCrop(cutBeforePath, cutAfterPath);
-                }
-                break;
-            case REQUEST_CODE_GETIMAGE_BYCROP:// 相册选图后返回
-                if (cut) {
-                    cutAfterPath = initImgPath();
-                    startActionCrop(UtilImage.getFilePathByUri(activity, data.getData()), cutAfterPath);
-                } else {
-                    cutBeforePath = UtilImage.getFilePathByUri(activity, data.getData());
-                }
-                break;
-            case REQUEST_CODE_GETIMAGE_BYSDCARD:// 剪裁后返回
-                break;
-        }
-        if (cut && requestCode == REQUEST_CODE_GETIMAGE_BYSDCARD) {
-            return cutAfterPath;
-        } else if (!cut) {
-            return cutBeforePath;
+    public String onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == Activity.RESULT_OK) {
+            switch (requestCode) {
+                case REQUEST_CODE_GETIMAGE_BYCAMERA:// 相机拍照后返回
+                    if (cut) {
+                        startActionCrop();
+                    } else {
+                        return cutBeforePath;
+                    }
+                    break;
+                case REQUEST_CODE_GETIMAGE_BYCROP:// 相册选图后返回
+                    if (data != null) {
+                        cutBeforePath = UtilImage.getFilePathByUri(activity, data.getData());
+                        if (cut) {
+                            startActionCrop();
+                        } else {
+                            return cutBeforePath;
+                        }
+                    }
+                    break;
+                case REQUEST_CODE_GETIMAGE_BYSDCARD:// 剪裁后返回
+                    if (cut) {
+                        return cutAfterPath;
+                    }
+                    break;
+            }
         }
         return null;
     }
 
     private String initImgPath() {
-        // TODO SD卡不存在时
-        return UtilAppFile.getSdcardPath() + com.zcj.util.UtilString.getSoleCode() + ".jpg";
+        return UtilAppFile.getExternalFilesDir(activity) + com.zcj.util.UtilString.getSoleCode() + ".jpg";
     }
 
     /**
@@ -132,9 +133,10 @@ public class PhotoChooseUtils {
     /**
      * 相机拍照
      */
-    private void startActionCamera(String savePath) {
+    private void startActionCamera() {
+        cutBeforePath = initImgPath();
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(savePath)));
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(cutBeforePath)));
         if (fragment != null) {
             fragment.startActivityForResult(intent, REQUEST_CODE_GETIMAGE_BYCAMERA);
         } else if (activity != null) {
@@ -145,10 +147,11 @@ public class PhotoChooseUtils {
     /**
      * 裁剪
      */
-    private void startActionCrop(String sourePath, String savePath) {
+    private void startActionCrop() {
+        cutAfterPath = initImgPath();
         Intent intent = new Intent("com.android.camera.action.CROP");
-        intent.setDataAndType(Uri.fromFile(new File(sourePath)), "image/*");
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(savePath)));
+        intent.setDataAndType(Uri.fromFile(new File(cutBeforePath)), "image/*");
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(cutAfterPath)));
         intent.putExtra("crop", "true");
         intent.putExtra("aspectX", 1);// 裁剪框比例
         intent.putExtra("aspectY", 1);

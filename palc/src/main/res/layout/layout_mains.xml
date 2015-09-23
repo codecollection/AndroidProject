@@ -24,11 +24,11 @@
 
     <fragment
         android:id="@+id/main_fragment_house"
-        android:name="com.thanone.palc.activity.HouseFragment"
+        android:name="com.thanone.palc.activity.HouseTempFragment"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        tools:layout="@layout/layout_house" />
+        tools:layout="@layout/layout_house_temp" />
 
     <fragment
         android:id="@+id/main_fragment_login"

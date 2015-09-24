@@ -19,12 +19,14 @@ Android的keystore
 版本记录
 
 	1.0.8
-
+        1、初始版
 	1.1.0
-
+        1、改成AndroidStudio开发环境
 	2.0.1
 		1、改成原生APP
 	2.0.2
 		1、不管有没有核验成功，第二次都提示已核验
 		2、去掉无网络时采集的数据保存到本地的功能
+	2.0.3
+		1、解决“activity在finish之后接收handleMessage时出错”的问题
 

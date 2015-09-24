@@ -50,7 +50,9 @@ public class SjhyActivity extends BaseActivity {
             public void handleMessage(Message msg) {
                 switch (msg.what) {
                     case MESSAGE_WHAT_ALERTDIALOG:
-                        UiUtil.alert(SjhyActivity.this, String.valueOf(msg.obj));
+                        if (!isFinishing()) {
+                            UiUtil.alert(SjhyActivity.this, String.valueOf(msg.obj));
+                        }
                         break;
                     default:
                         break;

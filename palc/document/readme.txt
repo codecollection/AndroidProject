@@ -29,4 +29,5 @@ Android的keystore
 		2、去掉无网络时采集的数据保存到本地的功能
 	2.0.3
 		1、解决“activity在finish之后接收handleMessage时出错”的问题
+		2、解决注册时身份证号码无法输入‘x’的问题
 

@@ -15,7 +15,7 @@
         android:layout_marginRight="@dimen/margin_form_left"
         android:layout_marginTop="@dimen/margin_form_top"
         android:hint="身份证号码"
-        android:inputType="number"
+        android:inputType="text"
         android:maxLength="18" />
 
     <EditText
